@@ -1,4 +1,6 @@
 # Cash-Flow-Game
+![下載](https://user-images.githubusercontent.com/28628745/196186741-21421161-e184-4df9-b116-38c3458ffd3a.jpg)
+
 
 
 # Intro your game
