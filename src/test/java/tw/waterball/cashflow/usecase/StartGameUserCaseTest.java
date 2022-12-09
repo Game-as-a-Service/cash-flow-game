@@ -2,6 +2,7 @@ package tw.waterball.cashflow.usecase;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import tw.waterball.cashflow.domain.entity.Actor;
 
 public class StartGameUserCaseTest {
 
@@ -21,10 +22,11 @@ public class StartGameUserCaseTest {
     void startGame_whenEnoughPlayers_thenStartGame()
     {
         //Given
-        Player p1 = new Player("nickname_1", "dream_1");
-        Player p2 = new Player("nickname_2", "dream_2");
+        Actor p1 = new Actor("nickname_1");
+        Actor p2 = new Actor("nickname_2");
         StartGameUseCase game = new StartGameUseCase();
-        game.add(p1, p2);
+        game.add(p1);
+        game.add(p2);
 
         //When
         boolean gameStarted = game.start();

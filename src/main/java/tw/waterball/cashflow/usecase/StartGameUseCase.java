@@ -1,17 +1,23 @@
 package tw.waterball.cashflow.usecase;
 
-import tw.waterball.cashflow.domain.entity.Player;
+import tw.waterball.cashflow.domain.entity.Actor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StartGameUseCase {
-    private List<Player> players;
+    private List<Actor> actors = new ArrayList<>();
     boolean start() {
-        return false;
+        return !actors.isEmpty() && actors.size() >= 2;
     }
 
-    void add(Player... players)
+    void add(Actor actor)
     {
-        players.
+        if(actors.contains(actor))
+        {
+            return;
+        }
+
+        actors.add(actor);
     }
 }
