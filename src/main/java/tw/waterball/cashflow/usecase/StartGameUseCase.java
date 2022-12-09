@@ -1,17 +1,17 @@
 package tw.waterball.cashflow.usecase;
 
-import tw.waterball.cashflow.domain.entity.Player;
+import tw.waterball.cashflow.domain.entity.Actor;
 
 import java.util.List;
 
 public class StartGameUseCase {
-    private List<Player> players;
+    private List<Actor> actors;
     boolean start() {
         return false;
     }
 
-    void add(Player... players)
+    void add(Actor... actors)
     {
-        players.
+        actors.
     }
 }
