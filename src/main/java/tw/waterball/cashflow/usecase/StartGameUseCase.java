@@ -1,23 +1,37 @@
 package tw.waterball.cashflow.usecase;
 
 import tw.waterball.cashflow.domain.entity.Actor;
+import tw.waterball.cashflow.usecase.util.FinancialStatementUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StartGameUseCase {
-    private List<Actor> actors = new ArrayList<>();
+    private Map<String, Actor> actorMap = new HashMap<>(); //Map<nickname, Actor>
     boolean start() {
-        return !actors.isEmpty() && actors.size() >= 2;
+        if(actorMap.isEmpty() || actorMap.size() < 2)
+        {
+            return false;
+        }
+
+        initializeFinancialStatements();
+        return true;
     }
 
     void add(Actor actor)
     {
-        if(actors.contains(actor))
+        if(actorMap.containsKey(actor.getNickname()))
         {
             return;
         }
 
-        actors.add(actor);
+        actorMap.put(actor.getNickname(), actor);
+    }
+
+    private void initializeFinancialStatements() {
+        for(Actor actor : actorMap.values())
+        {
+            actor.setFinancialStatement(FinancialStatementUtils.initialize(actor.getCareer()));
+        }
     }
 }
