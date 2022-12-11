@@ -9,7 +9,7 @@ import java.util.Map;
 public class StartGameUseCase {
     private Map<String, Actor> actorMap = new HashMap<>(); //Map<nickname, Actor>
     boolean start() {
-        if(actorMap.isEmpty() || actorMap.size() < 2)
+        if(actorMap.isEmpty())
         {
             return false;
         }
