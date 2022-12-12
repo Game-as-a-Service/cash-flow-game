@@ -19,10 +19,8 @@ import java.util.Optional;
 @NoArgsConstructor
 @ToString
 public class FinancialStatement {
-//    private long totalIncome;
-//    private long totalExpenses;
-    private long passiveIncome;
-    private long cash;
+    private BigDecimal passiveIncome;
+    private BigDecimal cash;
 
     private Map<IncomeType, Income> incomeMap = new HashMap<>();
     private Map<ExpenseType, Expense> expenseMap = new HashMap<>();
