@@ -11,6 +11,7 @@ import tw.waterball.cashflow.domain.entity.income.IncomeType;
 import tw.waterball.cashflow.domain.entity.liability.Liability;
 import tw.waterball.cashflow.domain.entity.liability.LiabilityType;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -28,29 +29,29 @@ public class FinancialStatement {
     private Map<AssetType, Asset> assetMap = new HashMap<>();
     private Map<LiabilityType, Liability> liabilityMap = new HashMap<>();
 
-    public long getTotalIncomeAmount()
+    public BigDecimal getTotalIncomeAmount()
     {
-        return incomeMap.values().stream().mapToLong(Income::getAmount).sum();
+        return incomeMap.values().stream().map(income -> income.getAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    public long getTotalExpenseAmount()
+    public BigDecimal getTotalExpenseAmount()
     {
-        return expenseMap.values().stream().mapToLong(Expense::getAmount).sum();
+        return expenseMap.values().stream().map(expense -> expense.getAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    public long getTotalAssetAmount()
+    public BigDecimal getTotalAssetAmount()
     {
-        return assetMap.values().stream().mapToLong(Asset::getAmount).sum();
+        return assetMap.values().stream().map(asset -> asset.getAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    public long getTotalLiabilityAmount()
+    public BigDecimal getTotalLiabilityAmount()
     {
-        return liabilityMap.values().stream().mapToLong(Liability::getAmount).sum();
+        return liabilityMap.values().stream().map(liability -> liability.getAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    public long getPayday()
+    public BigDecimal getPayday()
     {
-        return getTotalIncomeAmount() - getTotalExpenseAmount();
+        return getTotalIncomeAmount().subtract(getTotalExpenseAmount());
     }
 
     public void addIncome(Income income)

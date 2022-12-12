@@ -4,12 +4,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.math.BigDecimal;
+
 @Builder
 @Getter
 @ToString
 public class Asset {
     private AssetType type;
-    private long amount;
+    private BigDecimal amount;
 
     public static AssetBuilder builder(AssetType type)
     {

@@ -4,13 +4,15 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.math.BigDecimal;
+
 //@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Builder
 @ToString
 public class Income {
     private IncomeType type;
-    private long amount;
+    private BigDecimal amount;
 
     public static IncomeBuilder builder(IncomeType type)
     {
