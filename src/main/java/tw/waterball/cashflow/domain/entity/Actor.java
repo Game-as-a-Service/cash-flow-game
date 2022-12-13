@@ -11,7 +11,7 @@ import tw.waterball.cashflow.application.usecase.util.FinancialStatementUtils;
 @ToString
 @EqualsAndHashCode
 public class Actor {
-
+  private String dream;
   private final String nickname;
   private final Career career;
   private FinancialStatement financialStatement;
