@@ -1,4 +1,4 @@
-package tw.waterball.cashflow.controller;
+package tw.waterball.cashflow.springboot.controller;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
