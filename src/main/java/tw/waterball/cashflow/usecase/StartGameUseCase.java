@@ -12,6 +12,6 @@ public class StartGameUseCase {
 
     void add(Actor... actors)
     {
-        actors.
+//        actors.
     }
 }
