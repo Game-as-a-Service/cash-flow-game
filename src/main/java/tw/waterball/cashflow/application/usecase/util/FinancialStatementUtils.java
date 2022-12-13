@@ -1,4 +1,4 @@
-package tw.waterball.cashflow.usecase.util;
+package tw.waterball.cashflow.application.usecase.util;
 
 import tw.waterball.cashflow.domain.entity.Career;
 import tw.waterball.cashflow.domain.entity.FinancialStatement;
