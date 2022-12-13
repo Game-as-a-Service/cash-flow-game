@@ -1,6 +1,6 @@
 package tw.waterball.cashflow.usecase;
 
-public class Player {
+public class Actor {
     private int passiveIncome;
     private int expenses;
 
@@ -14,6 +14,6 @@ public class Player {
     }
 
     public boolean isInOuterCircle() {
-        return passiveIncome > expenses;
+        return passiveIncome >= expenses;
     }
 }

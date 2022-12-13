@@ -9,42 +9,42 @@ public class OuterCircleTest {
 
         @Test
         public void givenPlayerWithPassiveIncomeGreaterThanExpenses_whenIsInOuterCircle_thenReturnsTrue() {
-            Player player = new Player();
-            player.setPassiveIncome(200);
-            player.setExpenses(100);
-            assertTrue(player.isInOuterCircle());
+            Actor actor = new Actor();
+            actor.setPassiveIncome(200);
+            actor.setExpenses(100);
+            assertTrue(actor.isInOuterCircle());
         }
 
         @Test
         public void givenPlayerWithPassiveIncomeLessThanExpenses_whenIsInOuterCircle_thenReturnsFalse() {
-            Player player = new Player();
-            player.setPassiveIncome(100);
-            player.setExpenses(200);
-            assertFalse(player.isInOuterCircle());
+            Actor actor = new Actor();
+            actor.setPassiveIncome(100);
+            actor.setExpenses(200);
+            assertFalse(actor.isInOuterCircle());
         }
 
         @Test
         public void givenPlayerWithNoPassiveIncome_whenIsInOuterCircle_thenReturnsFalse() {
-            Player player = new Player();
-            player.setPassiveIncome(0);
-            player.setExpenses(100);
-            assertFalse(player.isInOuterCircle());
+            Actor actor = new Actor();
+            actor.setPassiveIncome(0);
+            actor.setExpenses(100);
+            assertFalse(actor.isInOuterCircle());
         }
 
         @Test
         public void givenPlayerWithNoExpenses_whenIsInOuterCircle_thenReturnsTrue() {
-            Player player = new Player();
-            player.setPassiveIncome(200);
-            player.setExpenses(0);
-            assertTrue(player.isInOuterCircle());
+            Actor actor = new Actor();
+            actor.setPassiveIncome(200);
+            actor.setExpenses(0);
+            assertTrue(actor.isInOuterCircle());
         }
 
         @Test
         public void givenPlayerWithEqualPassiveIncomeAndExpenses_whenIsInOuterCircle_thenReturnsFalse() {
-            Player player = new Player();
-            player.setPassiveIncome(100);
-            player.setExpenses(100);
-            assertFalse(player.isInOuterCircle());
+            Actor actor = new Actor();
+            actor.setPassiveIncome(100);
+            actor.setExpenses(100);
+            assertTrue(actor.isInOuterCircle());
         }
     }
 
