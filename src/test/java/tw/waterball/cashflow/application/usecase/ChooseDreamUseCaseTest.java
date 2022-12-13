@@ -26,11 +26,11 @@ class ChooseDreamUseCaseTest {
   @Test
   void givenNotExistActor_whenChooseDream_thenStartIsNotStarted() {
     //Given
-    int actorId = 1;
-    Actor actor = new Actor(actorId, "name_1", Career.Engineer);
+    String nickname = "name_1";
+    Actor actor = new Actor(nickname, Career.Engineer);
     Input input = new Input(actor, 1, "開快艇競速");
 
-    Mockito.when(actorRepository.findGameByActorId(actorId)).thenReturn(Optional.empty());
+    Mockito.when(actorRepository.findGameByNickname(nickname)).thenReturn(Optional.empty());
 
     //When,Then
     Assertions.assertThrows(ActorNotFound.class, () -> chooseDreamUseCase.execute(input));
@@ -39,12 +39,12 @@ class ChooseDreamUseCaseTest {
   @Test
   void givenActorAndDream_whenChooseDream_thenUpdateActorInfo(){
     //Given
-    int actorId = 1;
+    String nickname = "name_1";
     String dream = "開快艇競速";
-    Actor actor = new Actor(actorId, "name_1", Career.Engineer);
+    Actor actor = new Actor(nickname, Career.Engineer);
     Input input = new Input(actor, 1, dream);
 
-    Mockito.when(actorRepository.findGameByActorId(actorId)).thenReturn( Optional.of(actor));
+    Mockito.when(actorRepository.findGameByNickname(nickname)).thenReturn( Optional.of(actor));
 
     //When
     chooseDreamUseCase.execute(input);
