@@ -1,3 +1,6 @@
-/.idea/
 /lib/
 target/
+
+# idea setting
+*.iml
+.idea/
