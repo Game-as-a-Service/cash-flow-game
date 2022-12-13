@@ -1,4 +1,4 @@
-package tw.waterball.cashflow.usecase.repository;
+package tw.waterball.cashflow.application.repository;
 
 import java.util.Optional;
 import tw.waterball.cashflow.domain.entity.Actor;

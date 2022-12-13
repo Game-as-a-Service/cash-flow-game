@@ -1,4 +1,4 @@
-package tw.waterball.cashflow.usecase;
+package tw.waterball.cashflow.application.usecase;
 
 
 import java.util.Optional;
@@ -6,8 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import tw.waterball.cashflow.domain.entity.Actor;
-import tw.waterball.cashflow.usecase.repository.ActorRepository;
-import tw.waterball.cashflow.util.exception.ActorNotFound;
+import tw.waterball.cashflow.application.repository.ActorRepository;
+import tw.waterball.cashflow.domain.entity.exception.ActorNotFound;
 
 @Slf4j
 @AllArgsConstructor

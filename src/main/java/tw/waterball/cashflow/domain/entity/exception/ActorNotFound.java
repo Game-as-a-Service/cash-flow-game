@@ -1,4 +1,4 @@
-package tw.waterball.cashflow.util.exception;
+package tw.waterball.cashflow.domain.entity.exception;
 
 
 public class ActorNotFound extends RuntimeException {

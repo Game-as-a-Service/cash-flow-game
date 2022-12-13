@@ -1,4 +1,4 @@
-package tw.waterball.cashflow.controller;
+package tw.waterball.cashflow.springboot.controller;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import tw.waterball.cashflow.CashFlowApplication;
+import tw.waterball.cashflow.springboot.CashFlowApplication;
 
 @SpringBootTest(classes = CashFlowApplication.class)
 @AutoConfigureMockMvc

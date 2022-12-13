@@ -1,19 +1,19 @@
-package tw.waterball.cashflow.usecase;
+package tw.waterball.cashflow.application.usecase;
 
 import java.util.Optional;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import tw.waterball.cashflow.application.usecase.ChooseDreamUseCase;
 import tw.waterball.cashflow.domain.entity.Actor;
 import tw.waterball.cashflow.domain.entity.Career;
-import tw.waterball.cashflow.usecase.ChooseDreamUseCase.Input;
-import tw.waterball.cashflow.usecase.repository.ActorRepository;
-import tw.waterball.cashflow.util.exception.ActorNotFound;
+import tw.waterball.cashflow.application.usecase.ChooseDreamUseCase.Input;
+import tw.waterball.cashflow.application.repository.ActorRepository;
+import tw.waterball.cashflow.domain.entity.exception.ActorNotFound;
 
 @ExtendWith(MockitoExtension.class)
 class ChooseDreamUseCaseTest {

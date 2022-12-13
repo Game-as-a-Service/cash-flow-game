@@ -1,4 +1,4 @@
-package tw.waterball.cashflow.usecase;
+package tw.waterball.cashflow.application.usecase;
 
 import tw.waterball.cashflow.domain.entity.Actor;
 

@@ -1,8 +1,8 @@
-package tw.waterball.cashflow.usecase;
+package tw.waterball.cashflow.application.usecase;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import tw.waterball.cashflow.domain.entity.Actor;
+import tw.waterball.cashflow.application.usecase.StartGameUseCase;
 
 class StartGameUserCaseTest {
 
