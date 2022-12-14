@@ -8,8 +8,7 @@ public enum ExpenseType {
     /**
      * 小孩支出
      */
-    EducationExpense,
-    Tax,
+    EducationExpense, Tax,
     /**
      * 房貸
      */
@@ -17,7 +16,5 @@ public enum ExpenseType {
     /**
      * 車貸
      */
-    CarLoanPayment,
-    CreditCardPayment,
-    OtherExpenses
+    CarLoanPayment, CreditCardPayment, CashLoanPayment, OtherExpenses
 }
