@@ -1,7 +1,7 @@
 package tw.waterball.cashflow.application.usecase;
 
-import tw.waterball.cashflow.domain.entity.Actor;
 import tw.waterball.cashflow.application.usecase.util.FinancialStatementUtils;
+import tw.waterball.cashflow.domain.entity.Actor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,12 +20,12 @@ public class StartGameUseCase {
 
     public void add(Actor actor)
     {
-        if(actorMap.containsKey(actor.getNickname()))
+        if(actorMap.containsKey(actor.getActorName()))
         {
             return;
         }
 
-        actorMap.put(actor.getNickname(), actor);
+        actorMap.put(actor.getActorName(), actor);
     }
 
     private void initializeFinancialStatements() {

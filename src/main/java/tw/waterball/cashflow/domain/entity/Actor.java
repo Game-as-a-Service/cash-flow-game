@@ -11,14 +11,13 @@ import tw.waterball.cashflow.application.usecase.util.FinancialStatementUtils;
 @ToString
 @EqualsAndHashCode
 public class Actor {
-  private String dream;
-  private final String nickname;
-  private final Career career;
-  private FinancialStatement financialStatement;
+    private final String actorName;
+    private final Career career;
+    private FinancialStatement financialStatement;
 
-  public Actor(String nickname, Career career) {
-    this.nickname = nickname;
-    this.career = career;
-    this.financialStatement = FinancialStatementUtils.initialize(this.career);
-  }
+    public Actor(String actorName, Career career) {
+        this.actorName = actorName;
+        this.career = career;
+        this.financialStatement = FinancialStatementUtils.initialize(this.career);
+    }
 }
