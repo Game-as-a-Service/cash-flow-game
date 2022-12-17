@@ -14,7 +14,11 @@ public enum EventType {
      */
     Child,
     /**
-     * 額外支出
+     * 額外支出 - 結婚紀念日
      */
-    ExtraPayment
+    ExtraPayment_Anniversary,
+    /**
+     * 額外支出 - 購買電視
+     */
+    ExtraPayment_Television
 }
