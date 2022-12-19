@@ -16,13 +16,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BorrowMoneyUseCaseTest {
 
     @Test
-    void giveActor_whenGetCashLoan_thenSuccess() {
-        BorrowMoneyUseCase getBankLoan = new BorrowMoneyUseCase();
+    void giveActor_whenBorrowMoney_thenSuccess() {
+        BorrowMoneyUseCase borrowMoneyUseCase = new BorrowMoneyUseCase();
         // Given
         Actor actor = new Actor("A", Career.Engineer);
 
         // When
-        actor = getBankLoan.borrowMoney(actor, BigDecimal.valueOf(9000));
+        actor = borrowMoneyUseCase.borrowMoney(actor, BigDecimal.valueOf(9000));
 
         // Then
         Optional<Liability> liabilityOptional = actor.getFinancialStatement().getLiability(LiabilityType.CashLoan);
