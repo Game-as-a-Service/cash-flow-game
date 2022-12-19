@@ -19,6 +19,22 @@ import java.util.Optional;
 @NoArgsConstructor
 @ToString
 public class FinancialStatement {
+    public BigDecimal getPassiveIncome() {
+        return passiveIncome;
+    }
+
+    public void setPassiveIncome(BigDecimal passiveIncome) {
+        this.passiveIncome = passiveIncome;
+    }
+
+    public Map<ExpenseType, Expense> getExpenseMap() {
+        return expenseMap;
+    }
+
+    public void setExpenseMap(Map<ExpenseType, Expense> expenseMap) {
+        this.expenseMap = expenseMap;
+    }
+
     private BigDecimal passiveIncome;
     private BigDecimal cash;
 
