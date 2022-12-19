@@ -21,11 +21,11 @@ public class BorrowMoneyUseCase {
 
     private FinancialStatement financialStatementUpdate(FinancialStatement financialStatement, BigDecimal moneyAmount) {
         Optional<Liability> cashLoanLiabilityOptional = financialStatement.getLiability(LiabilityType.CashLoan);
-        BigDecimal totalCashLoanLiability = cashLoanLiabilityOptional.isPresent() ? cashLoanLiabilityOptional.get().getAmount().add(moneyAmount) : moneyAmount;
+        BigDecimal totalCashLoanLiability = cashLoanLiabilityOptional.map(liability -> liability.getAmount().add(moneyAmount)).orElse(moneyAmount);
         financialStatement.addLiability(Liability.builder(LiabilityType.CashLoan).amount(totalCashLoanLiability).build());
 
         Optional<Expense> cashLoanExpenseOptional = financialStatement.getExpense(ExpenseType.CashLoanPayment);
-        BigDecimal totalCashLoanExpense = cashLoanExpenseOptional.isPresent() ? cashLoanExpenseOptional.get().getAmount().add((moneyAmount.multiply(CASH_LOAN_INTEREST_RATIO))) : moneyAmount.multiply(CASH_LOAN_INTEREST_RATIO);
+        BigDecimal totalCashLoanExpense = cashLoanExpenseOptional.map(expense -> expense.getAmount().add((moneyAmount.multiply(CASH_LOAN_INTEREST_RATIO)))).orElseGet(() -> moneyAmount.multiply(CASH_LOAN_INTEREST_RATIO));
         financialStatement.addExpense(Expense.builder(ExpenseType.CashLoanPayment).amount(totalCashLoanExpense.setScale(0, RoundingMode.HALF_UP)).build());
 
         return financialStatement;
