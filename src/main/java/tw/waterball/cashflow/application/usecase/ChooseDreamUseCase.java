@@ -19,11 +19,11 @@ public class ChooseDreamUseCase {
     public void execute(final Input input) {
         log.debug("In ChooseDreamUseCase");
         Actor inputActor = input.getActor();
-        Optional<Actor> actor = actorRepository.findGameByNickname(inputActor.getNickname());
+        Optional<Actor> actor = actorRepository.findGameByNickname(inputActor.getActorName());
         if (actor.isEmpty()) {
-            throw new ActorNotFound("[Nickname]:[" + inputActor.getNickname() + "]");
+            throw new ActorNotFound("[Nickname]:[" + inputActor.getActorName() + "]");
         }
-        log.debug("[Nickname][{}] save dream: {}", inputActor.getNickname(), input.getDream());
+        log.debug("[Nickname][{}] save dream: {}", inputActor.getActorName(), input.getDream());
         inputActor.setDream(input.getDream());
         actorRepository.save(inputActor);
         log.debug("Finish ChooseDreamUseCase");
