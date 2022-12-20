@@ -12,13 +12,13 @@ import java.math.BigDecimal;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class ExtraPaymentUseCaseTest {
+class ExtraPaymentUseCaseTest {
     @Test
     void give3MillionCash_whenDrawExtraPaymentTelevisionEvent_thenSubtractCase5000() throws InsufficientCashException {
         // Given
         Actor actor = new Actor("actor_a", Career.Engineer);
         actor.setFinancialStatement(FinancialStatementUtils.initialize(Career.Engineer));
-        actor.getFinancialStatement().addCase(BigDecimal.valueOf(3000000));
+        actor.getFinancialStatement().addCash(BigDecimal.valueOf(3000000));
         BigDecimal currentCash = actor.getFinancialStatement().getCash();
 
         // When

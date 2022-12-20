@@ -29,22 +29,22 @@ public class FinancialStatement {
 
     public BigDecimal getTotalIncomeAmount()
     {
-        return incomeMap.values().stream().map(income -> income.getAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
+        return incomeMap.values().stream().map(Income::getAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public BigDecimal getTotalExpenseAmount()
     {
-        return expenseMap.values().stream().map(expense -> expense.getAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
+        return expenseMap.values().stream().map(Expense::getAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public BigDecimal getTotalAssetAmount()
     {
-        return assetMap.values().stream().map(asset -> asset.getAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
+        return assetMap.values().stream().map(Asset::getAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public BigDecimal getTotalLiabilityAmount()
     {
-        return liabilityMap.values().stream().map(liability -> liability.getAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
+        return liabilityMap.values().stream().map(Liability::getAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public BigDecimal getPayday()
@@ -97,7 +97,7 @@ public class FinancialStatement {
      * 增加儲蓄金額
      * @param amount 增加的數值，eg: 5000
      */
-    public void addCase(BigDecimal amount)
+    public void addCash(BigDecimal amount)
     {
         this.cash = this.cash.add(amount);
     }

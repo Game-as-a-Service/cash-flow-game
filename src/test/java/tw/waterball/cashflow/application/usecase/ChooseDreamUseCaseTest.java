@@ -30,7 +30,7 @@ class ChooseDreamUseCaseTest {
     Actor actor = new Actor(nickname, Career.Engineer);
     Input input = new Input(actor, 1, "開快艇競速");
 
-    Mockito.when(actorRepository.findGameByNickname(nickname)).thenReturn(Optional.empty());
+    Mockito.when(actorRepository.findGameByActorName(nickname)).thenReturn(Optional.empty());
 
     //When,Then
     Assertions.assertThrows(ActorNotFound.class, () -> chooseDreamUseCase.execute(input));
@@ -44,7 +44,7 @@ class ChooseDreamUseCaseTest {
     Actor actor = new Actor(nickname, Career.Engineer);
     Input input = new Input(actor, 1, dream);
 
-    Mockito.when(actorRepository.findGameByNickname(nickname)).thenReturn( Optional.of(actor));
+    Mockito.when(actorRepository.findGameByActorName(nickname)).thenReturn( Optional.of(actor));
 
     //When
     chooseDreamUseCase.execute(input);
