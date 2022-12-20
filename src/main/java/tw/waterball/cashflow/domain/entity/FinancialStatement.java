@@ -1,6 +1,7 @@
 package tw.waterball.cashflow.domain.entity;
 
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 import tw.waterball.cashflow.domain.entity.asset.Asset;
 import tw.waterball.cashflow.domain.entity.asset.AssetType;
@@ -18,6 +19,7 @@ import java.util.Optional;
 
 @NoArgsConstructor
 @ToString
+@Setter
 public class FinancialStatement {
     private BigDecimal passiveIncome;
     private BigDecimal cash;
@@ -27,61 +29,91 @@ public class FinancialStatement {
     private Map<AssetType, Asset> assetMap = new HashMap<>();
     private Map<LiabilityType, Liability> liabilityMap = new HashMap<>();
 
-    public BigDecimal getTotalIncomeAmount()
-    {
+    public BigDecimal getTotalIncomeAmount() {
         return incomeMap.values().stream().map(income -> income.getAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    public BigDecimal getTotalExpenseAmount()
-    {
+    public BigDecimal getTotalExpenseAmount() {
         return expenseMap.values().stream().map(expense -> expense.getAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    public BigDecimal getTotalAssetAmount()
-    {
+    public BigDecimal getTotalAssetAmount() {
         return assetMap.values().stream().map(asset -> asset.getAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    public BigDecimal getTotalLiabilityAmount()
-    {
+    public BigDecimal getTotalLiabilityAmount() {
         return liabilityMap.values().stream().map(liability -> liability.getAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    public BigDecimal getPayday()
-    {
+    public BigDecimal getPayday() {
         return getTotalIncomeAmount().subtract(getTotalExpenseAmount());
     }
 
-    public void addIncome(Income income)
-    {
-        if(!incomeMap.containsKey(income.getType()))
-        {
+    public void addIncome(Income income) {
+        if (!incomeMap.containsKey(income.getType())) {
             incomeMap.put(income.getType(), income);
         }
     }
 
     /**
      * 取得指定種類的收入
+     *
      * @param incomeType 收入種類
      * @return 指定的收入物件
      */
-    public Optional<Income> getIncome(IncomeType incomeType)
-    {
+    public Optional<Income> getIncome(IncomeType incomeType) {
         return Optional.ofNullable(this.incomeMap.get(incomeType));
     }
 
-    public void addExpense(Expense expense)
-    {
-        if(!expenseMap.containsKey(expense.getType()))
-        {
+    /**
+     * 取得指定種類的支出
+     *
+     * @param expenseType 支出種類
+     * @return 指定的支出物件
+     */
+    public Optional<Expense> getExpense(ExpenseType expenseType) {
+        return Optional.ofNullable(this.expenseMap.get(expenseType));
+    }
+
+    /**
+     * 取得指定種類的負債
+     *
+     * @param liabilityType 負債種類
+     * @return 指定的負債物件
+     */
+    public Optional<Liability> getLiability(LiabilityType liabilityType) {
+        return Optional.ofNullable(this.liabilityMap.get(liabilityType));
+    }
+
+    public void addExpense(Expense expense) {
+        if (!expenseMap.containsKey(expense.getType())) {
             expenseMap.put(expense.getType(), expense);
         }
     }
 
     public void addLiability(Liability liability) {
-        if(!liabilityMap.containsKey(liability.getType()))
-        {
+        if (!liabilityMap.containsKey(liability.getType())) {
             liabilityMap.put(liability.getType(), liability);
         }
+    }
+
+    public void deleteExpense(ExpenseType expenseType) {
+        if (expenseMap.containsKey(expenseType)) {
+            expenseMap.remove(expenseType);
+        }
+    }
+
+    public void deleteLiability(LiabilityType liabilityType) {
+        if (liabilityMap.containsKey(liabilityType)) {
+            liabilityMap.remove(liabilityType);
+        }
+    }
+
+    public void addCash(BigDecimal amount) {
+        this.cash.add(amount);
+    }
+
+    public void subtractCash(BigDecimal amount) {
+        this.cash.subtract(amount);
     }
 }
