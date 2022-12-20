@@ -16,7 +16,11 @@ public class Actor {
     private final Career career;
     private FinancialStatement financialStatement;
 
-    public Actor(String actorName, Career career) {
+    public boolean isInOuterCircle() {
+        return financialStatement.getPassiveIncome().compareTo(financialStatement.getTotalExpenseAmount()) >= 0;
+    }
+
+    public Actor(final String actorName, final Career career) {
         this.actorName = actorName;
         this.career = career;
         this.financialStatement = FinancialStatementUtils.initialize(this.career);
