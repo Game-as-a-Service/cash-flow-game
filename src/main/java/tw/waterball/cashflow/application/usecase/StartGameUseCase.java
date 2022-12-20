@@ -8,9 +8,9 @@ import java.util.Map;
 
 public class StartGameUseCase {
     private Map<String, Actor> actorMap = new HashMap<>(); //Map<nickname, Actor>
+
     public boolean start() {
-        if(actorMap.isEmpty())
-        {
+        if (actorMap.isEmpty()) {
             return false;
         }
 
@@ -18,10 +18,8 @@ public class StartGameUseCase {
         return true;
     }
 
-    public void add(Actor actor)
-    {
-        if(actorMap.containsKey(actor.getActorName()))
-        {
+    public void add(final Actor actor) {
+        if (actorMap.containsKey(actor.getActorName())) {
             return;
         }
 
@@ -29,8 +27,7 @@ public class StartGameUseCase {
     }
 
     private void initializeFinancialStatements() {
-        for(Actor actor : actorMap.values())
-        {
+        for (Actor actor : actorMap.values()) {
             actor.setFinancialStatement(FinancialStatementUtils.initialize(actor.getCareer()));
         }
     }
