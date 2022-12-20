@@ -3,7 +3,7 @@ package tw.waterball.cashflow.domain.entity.exception;
 
 public class ActorNotFound extends RuntimeException {
 
-  public ActorNotFound(String message) {
+  public ActorNotFound(final String message) {
     super(message);
   }
 }

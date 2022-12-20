@@ -19,7 +19,7 @@ public class ChooseDreamUseCase {
     public void execute(final Input input) {
         log.debug("In ChooseDreamUseCase");
         Actor inputActor = input.getActor();
-        Optional<Actor> actor = actorRepository.findGameByNickname(inputActor.getActorName());
+        Optional<Actor> actor = actorRepository.findGameByActorName(inputActor.getActorName());
         if (actor.isEmpty()) {
             throw new ActorNotFound("[ActorName]:[" + inputActor.getActorName() + "]");
         }
@@ -31,7 +31,6 @@ public class ChooseDreamUseCase {
 
     @Value
     public static class Input {
-
         private Actor actor;
         private int gameId; // TODO 這個應該要有
         private String dream;

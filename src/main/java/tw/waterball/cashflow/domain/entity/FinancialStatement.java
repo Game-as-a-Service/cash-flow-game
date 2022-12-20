@@ -20,7 +20,7 @@ import java.util.Optional;
 @ToString
 public class FinancialStatement {
     private BigDecimal passiveIncome;
-    private BigDecimal cash;
+    private BigDecimal cash = BigDecimal.ZERO;
 
     private Map<IncomeType, Income> incomeMap = new HashMap<>();
     private Map<ExpenseType, Expense> expenseMap = new HashMap<>();
@@ -73,6 +73,31 @@ public class FinancialStatement {
         if (!liabilityMap.containsKey(liability.getType())) {
             liabilityMap.put(liability.getType(), liability);
         }
+    }
+
+    /**
+     * @return 目前的儲蓄金額
+     */
+    public BigDecimal getCash() {
+        return this.cash;
+    }
+
+    /**
+     * 增加儲蓄金額
+     *
+     * @param amount 增加的數值，eg: 5000
+     */
+    public void addCash(BigDecimal amount) {
+        this.cash = this.cash.add(amount);
+    }
+
+    /**
+     * 減少儲蓄金額
+     *
+     * @param amount 要減少的金額，eg: 100
+     */
+    public void subtractCash(BigDecimal amount) {
+        this.cash = this.cash.subtract(amount);
     }
 
     public BigDecimal getPassiveIncome() {

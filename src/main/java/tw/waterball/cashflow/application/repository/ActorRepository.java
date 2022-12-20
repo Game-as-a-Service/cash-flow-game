@@ -5,7 +5,7 @@ import tw.waterball.cashflow.domain.entity.Actor;
 
 public interface ActorRepository {
 
-  Optional<Actor> findGameByNickname(String nickname);
+  Optional<Actor> findGameByActorName(String nickname);
 
   Actor save(Actor chineseChess);
 }
