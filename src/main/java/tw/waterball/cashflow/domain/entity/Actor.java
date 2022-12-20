@@ -6,7 +6,6 @@ import lombok.Setter;
 import lombok.ToString;
 import tw.waterball.cashflow.application.usecase.util.FinancialStatementUtils;
 
-import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -17,20 +16,9 @@ public class Actor {
   private final String nickname;
   private final Career career;
   private FinancialStatement financialStatement;
-  private BigDecimal passiveIncome;
-  private BigDecimal expenses;
-
-
-  public void setPassiveIncome(FinancialStatement financialStatement) {
-    passiveIncome = financialStatement.getPassiveIncome();
-  }
-
-  public void setExpenses(FinancialStatement financialStatement) {
-    this.expenses = financialStatement.getTotalExpenseAmount();
-  }
 
   public boolean isInOuterCircle() {
-    return passiveIncome.compareTo(expenses)>=0;
+    return financialStatement.getPassiveIncome().compareTo(financialStatement.getTotalExpenseAmount())>=0;
   }
   public Actor(String nickname, Career career) {
     this.nickname = nickname;

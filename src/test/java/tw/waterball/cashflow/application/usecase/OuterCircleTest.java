@@ -25,8 +25,7 @@ public class OuterCircleTest {
                            Expense.builder(ExpenseType.Tax).amount(BigDecimal.valueOf(80)).build());
             financialStatement.setPassiveIncome(new BigDecimal(200));
             financialStatement.setExpenseMap(expenseMap);
-            actor.setPassiveIncome(financialStatement);
-            actor.setExpenses(financialStatement);
+            actor.setFinancialStatement(financialStatement);
             assertTrue(actor.isInOuterCircle());
         }
 
@@ -39,8 +38,7 @@ public class OuterCircleTest {
                            Expense.builder(ExpenseType.Tax).amount(BigDecimal.valueOf(200)).build());
             financialStatement.setPassiveIncome(new BigDecimal(100));
             financialStatement.setExpenseMap(expenseMap);
-            actor.setPassiveIncome(financialStatement);
-            actor.setExpenses(financialStatement);
+            actor.setFinancialStatement(financialStatement);
             assertFalse(actor.isInOuterCircle());
         }
 
@@ -53,8 +51,7 @@ public class OuterCircleTest {
                            Expense.builder(ExpenseType.Tax).amount(BigDecimal.valueOf(200)).build());
             financialStatement.setPassiveIncome(new BigDecimal(0));
             financialStatement.setExpenseMap(expenseMap);
-            actor.setPassiveIncome(financialStatement);
-            actor.setExpenses(financialStatement);
+            actor.setFinancialStatement(financialStatement);
             assertFalse(actor.isInOuterCircle());
         }
 
@@ -67,8 +64,7 @@ public class OuterCircleTest {
                            Expense.builder(ExpenseType.Tax).amount(BigDecimal.valueOf(0)).build());
             financialStatement.setPassiveIncome(new BigDecimal(200));
             financialStatement.setExpenseMap(expenseMap);
-            actor.setPassiveIncome(financialStatement);
-            actor.setExpenses(financialStatement);
+            actor.setFinancialStatement(financialStatement);
             assertTrue(actor.isInOuterCircle());
         }
 
@@ -81,8 +77,7 @@ public class OuterCircleTest {
                            Expense.builder(ExpenseType.Tax).amount(BigDecimal.valueOf(200)).build());
             financialStatement.setPassiveIncome(new BigDecimal(200));
             financialStatement.setExpenseMap(expenseMap);
-            actor.setPassiveIncome(financialStatement);
-            actor.setExpenses(financialStatement);
+            actor.setFinancialStatement(financialStatement);
             assertTrue(actor.isInOuterCircle());
         }
     }
