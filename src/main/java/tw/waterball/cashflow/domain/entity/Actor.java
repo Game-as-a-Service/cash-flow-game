@@ -6,23 +6,23 @@ import lombok.Setter;
 import lombok.ToString;
 import tw.waterball.cashflow.application.usecase.util.FinancialStatementUtils;
 
-
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
 public class Actor {
-  private String dream;
-  private final String nickname;
-  private final Career career;
-  private FinancialStatement financialStatement;
+    private String dream;
+    private final String actorName;
+    private final Career career;
+    private FinancialStatement financialStatement;
 
-  public boolean isInOuterCircle() {
-    return financialStatement.getPassiveIncome().compareTo(financialStatement.getTotalExpenseAmount())>=0;
-  }
-  public Actor(String nickname, Career career) {
-    this.nickname = nickname;
-    this.career = career;
-    this.financialStatement = FinancialStatementUtils.initialize(this.career);
-  }
+    public boolean isInOuterCircle() {
+        return financialStatement.getPassiveIncome().compareTo(financialStatement.getTotalExpenseAmount()) >= 0;
+    }
+
+    public Actor(final String actorName, final Career career) {
+        this.actorName = actorName;
+        this.career = career;
+        this.financialStatement = FinancialStatementUtils.initialize(this.career);
+    }
 }
