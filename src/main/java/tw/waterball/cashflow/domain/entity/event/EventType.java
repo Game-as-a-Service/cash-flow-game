@@ -1,5 +1,10 @@
 package tw.waterball.cashflow.domain.entity.event;
 
+/**
+ * 主要事件的種類
+ *
+ * @see ExtraPaymentEventType
+ */
 public enum EventType {
     /**
      * 慈善事件
@@ -14,11 +19,7 @@ public enum EventType {
      */
     Child,
     /**
-     * 額外支出 - 結婚紀念日
+     * 額外支出
      */
-    ExtraPayment_Anniversary,
-    /**
-     * 額外支出 - 購買電視
-     */
-    ExtraPayment_Television
+    ExtraPayment
 }
