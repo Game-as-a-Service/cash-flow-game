@@ -16,7 +16,7 @@ public class ExtraPaymentTelevisionEventTest {
         // Given 玩家有大於 5000 的儲蓄
         Actor actor = new Actor("actor_a", Career.Engineer);
         actor.setFinancialStatement(FinancialStatementUtils.initialize(Career.Engineer));
-        actor.getFinancialStatement().addCase(BigDecimal.valueOf(3000000));
+        actor.getFinancialStatement().addCash(BigDecimal.valueOf(3000000));
         BigDecimal currentCash = actor.getFinancialStatement().getCash();
 
         // When 假裝抽到購買電視額外支出

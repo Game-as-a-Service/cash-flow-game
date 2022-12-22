@@ -29,7 +29,7 @@ public class FinancialStatementUtils {
                 financialStatement.addLiability(Liability.builder(LiabilityType.CarLoans).amount(BigDecimal.valueOf(4000)).build());
                 financialStatement.addLiability(Liability.builder(LiabilityType.CreditCard).amount(BigDecimal.valueOf(3000)).build());
 
-                financialStatement.addCase(BigDecimal.valueOf(5000));
+                financialStatement.addCash(BigDecimal.valueOf(5000));
                 return financialStatement;
             case Teacher:
                 financialStatement = new FinancialStatement();
@@ -43,7 +43,7 @@ public class FinancialStatementUtils {
                 financialStatement.addLiability(Liability.builder(LiabilityType.HomeMortgage).amount(BigDecimal.valueOf(20000)).build());
                 financialStatement.addLiability(Liability.builder(LiabilityType.CreditCard).amount(BigDecimal.valueOf(5000)).build());
 
-                financialStatement.addCase(BigDecimal.valueOf(3000));
+                financialStatement.addCash(BigDecimal.valueOf(3000));
                 return financialStatement;
             default:
                 throw new UnsupportedOperationException("Not implemented yet.");
