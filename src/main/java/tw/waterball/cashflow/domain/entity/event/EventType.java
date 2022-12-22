@@ -4,21 +4,25 @@ public enum EventType {
     /**
      * 慈善事件
      */
-    Charity,
+    CHARITY,
     /**
      * 銀行結算日
      */
-    SettlementDate,
+    SETTLEMENT_DATE,
     /**
      * 小孩 / 小孩出生 / 小孩教育
      */
-    Child,
+    CHILD,
     /**
-     * 額外支出 - 結婚紀念日
+     * 額外支出
      */
-    ExtraPayment_Anniversary,
+    EXTRA_PAYMENT,
     /**
-     * 額外支出 - 購買電視
+     * 失業
      */
-    ExtraPayment_Television
+    UNEMPLOYMENT,
+    /**
+     * 交易機會
+     */
+    DEAL_OPPORTUNITY
 }

@@ -10,7 +10,7 @@ public class SettlementDateEvent implements Event {
 
     @Override
     public EventType getEventType() {
-        return EventType.SettlementDate;
+        return EventType.SETTLEMENT_DATE;
     }
 
     @Override
