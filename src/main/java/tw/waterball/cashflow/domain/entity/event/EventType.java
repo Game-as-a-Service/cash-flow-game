@@ -21,5 +21,9 @@ public enum EventType {
     /**
      * 額外支出
      */
-    EXTRA_PAYMENT
+    EXTRA_PAYMENT,
+    /**
+     * 失業
+     */
+    UNEMPLOYMENT
 }
