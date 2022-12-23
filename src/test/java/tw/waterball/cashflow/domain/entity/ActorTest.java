@@ -8,7 +8,8 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ActorTest {
     @Test
@@ -16,8 +17,8 @@ class ActorTest {
         Actor actor = new Actor("Nick", Career.Engineer);
         FinancialStatement financialStatement = new FinancialStatement();
         Map<ExpenseType, Expense> expenseMap = new HashMap<>();
-        expenseMap.put(ExpenseType.Tax,
-                       Expense.builder(ExpenseType.Tax).amount(BigDecimal.valueOf(80)).build());
+        expenseMap.put(ExpenseType.TAX,
+                       Expense.builder(ExpenseType.TAX).amount(BigDecimal.valueOf(80)).build());
         financialStatement.setPassiveIncome(new BigDecimal(200));
         financialStatement.setExpenseMap(expenseMap);
         actor.setFinancialStatement(financialStatement);
@@ -29,8 +30,8 @@ class ActorTest {
         Actor actor = new Actor("Nick", Career.Engineer);
         FinancialStatement financialStatement = new FinancialStatement();
         Map<ExpenseType, Expense> expenseMap = new HashMap<>();
-        expenseMap.put(ExpenseType.Tax,
-                       Expense.builder(ExpenseType.Tax).amount(BigDecimal.valueOf(200)).build());
+        expenseMap.put(ExpenseType.TAX,
+                       Expense.builder(ExpenseType.TAX).amount(BigDecimal.valueOf(200)).build());
         financialStatement.setPassiveIncome(new BigDecimal(100));
         financialStatement.setExpenseMap(expenseMap);
         actor.setFinancialStatement(financialStatement);
@@ -42,8 +43,8 @@ class ActorTest {
         Actor actor = new Actor("Nick", Career.Engineer);
         FinancialStatement financialStatement = new FinancialStatement();
         Map<ExpenseType, Expense> expenseMap = new HashMap<>();
-        expenseMap.put(ExpenseType.Tax,
-                       Expense.builder(ExpenseType.Tax).amount(BigDecimal.valueOf(200)).build());
+        expenseMap.put(ExpenseType.TAX,
+                       Expense.builder(ExpenseType.TAX).amount(BigDecimal.valueOf(200)).build());
         financialStatement.setPassiveIncome(new BigDecimal(0));
         financialStatement.setExpenseMap(expenseMap);
         actor.setFinancialStatement(financialStatement);
@@ -55,8 +56,8 @@ class ActorTest {
         Actor actor = new Actor("Nick", Career.Engineer);
         FinancialStatement financialStatement = new FinancialStatement();
         Map<ExpenseType, Expense> expenseMap = new HashMap<>();
-        expenseMap.put(ExpenseType.Tax,
-                       Expense.builder(ExpenseType.Tax).amount(BigDecimal.valueOf(0)).build());
+        expenseMap.put(ExpenseType.TAX,
+                       Expense.builder(ExpenseType.TAX).amount(BigDecimal.valueOf(0)).build());
         financialStatement.setPassiveIncome(new BigDecimal(200));
         financialStatement.setExpenseMap(expenseMap);
         actor.setFinancialStatement(financialStatement);
@@ -68,8 +69,8 @@ class ActorTest {
         Actor actor = new Actor("Nick", Career.Engineer);
         FinancialStatement financialStatement = new FinancialStatement();
         Map<ExpenseType, Expense> expenseMap = new HashMap<>();
-        expenseMap.put(ExpenseType.Tax,
-                       Expense.builder(ExpenseType.Tax).amount(BigDecimal.valueOf(200)).build());
+        expenseMap.put(ExpenseType.TAX,
+                       Expense.builder(ExpenseType.TAX).amount(BigDecimal.valueOf(200)).build());
         financialStatement.setPassiveIncome(new BigDecimal(200));
         financialStatement.setExpenseMap(expenseMap);
         actor.setFinancialStatement(financialStatement);

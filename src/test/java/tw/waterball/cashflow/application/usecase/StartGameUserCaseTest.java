@@ -1,7 +1,6 @@
 package tw.waterball.cashflow.application.usecase;
 
 import org.junit.jupiter.api.Test;
-import tw.waterball.cashflow.application.usecase.StartGameUseCase;
 import tw.waterball.cashflow.domain.entity.Actor;
 import tw.waterball.cashflow.domain.entity.Career;
 import tw.waterball.cashflow.domain.entity.income.Income;
@@ -59,14 +58,14 @@ public class StartGameUserCaseTest {
         game.start();
 
         //Then
-        Optional<Income> engineerSalary = engineer.getFinancialStatement().getIncome(IncomeType.Salary);
+        Optional<Income> engineerSalary = engineer.getFinancialStatement().getIncome(IncomeType.SALARY);
         assertThat(engineerSalary).isNotEmpty();
         assertThat(engineerSalary.get().getAmount()).isEqualTo(BigDecimal.valueOf(2500));
         assertThat(engineer.getFinancialStatement().getTotalExpenseAmount()).isEqualTo(BigDecimal.valueOf(1590));
         assertThat(engineer.getFinancialStatement().getTotalAssetAmount()).isEqualTo(BigDecimal.valueOf(0));
         assertThat(engineer.getFinancialStatement().getTotalLiabilityAmount()).isEqualTo(BigDecimal.valueOf(45000));
 
-        Optional<Income> teacherSalary = teacher.getFinancialStatement().getIncome(IncomeType.Salary);
+        Optional<Income> teacherSalary = teacher.getFinancialStatement().getIncome(IncomeType.SALARY);
         assertThat(teacherSalary).isNotEmpty();
         assertThat(teacherSalary.get().getAmount()).isEqualTo(BigDecimal.valueOf(1500));
         assertThat(teacher.getFinancialStatement().getTotalExpenseAmount()).isEqualTo(BigDecimal.valueOf(1000));

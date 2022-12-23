@@ -39,7 +39,7 @@ class SettlementDateEventTest {
         // Given 玩家A，總收入2500，支出1590，儲蓄 200
         Actor actor = new Actor("玩家A", Engineer);
         FinancialStatement financialStatement = actor.getFinancialStatement();
-        financialStatement.addExpense(Expense.builder(ExpenseType.Interest).amount(BigDecimal.valueOf(920)).build());
+        financialStatement.addExpense(Expense.builder(ExpenseType.INTEREST).amount(BigDecimal.valueOf(920)).build());
         BigDecimal cash = BigDecimal.valueOf(200);
         financialStatement.addCash(cash);
 
@@ -59,7 +59,7 @@ class SettlementDateEventTest {
         // Given 玩家A，總收入2500，支出1590，儲蓄 200
         Actor actor = new Actor("玩家A", Engineer);
         FinancialStatement financialStatement = actor.getFinancialStatement();
-        financialStatement.addExpense(Expense.builder(ExpenseType.Interest).amount(BigDecimal.valueOf(920)).build());
+        financialStatement.addExpense(Expense.builder(ExpenseType.INTEREST).amount(BigDecimal.valueOf(920)).build());
 
         // When 玩家A擲骰子，並走到銀行結算日格子 Then 破產
         Assertions.assertThrows(InsufficientCashException.class, () -> settlementDateEvent.execute(actor));
