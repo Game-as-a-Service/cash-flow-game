@@ -112,7 +112,20 @@ public class FinancialStatement {
         return expenseMap;
     }
 
+    /**
+     * @see #addExpense(Expense)
+     * @see #deleteAllExpenses()
+     * @deprecated 不建議直接對設定內部的 map
+     */
+    @Deprecated
     public void setExpenseMap(final Map<ExpenseType, Expense> expenseMap) {
         this.expenseMap = expenseMap;
+    }
+
+    /**
+     * 刪除所有花費
+     */
+    public void deleteAllExpenses() {
+        this.expenseMap.clear();
     }
 }
