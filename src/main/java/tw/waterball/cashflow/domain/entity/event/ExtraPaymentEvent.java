@@ -33,7 +33,7 @@ public class ExtraPaymentEvent implements Event {
 
     @Override
     public EventType getEventType() {
-        return EventType.ExtraPayment;
+        return EventType.EXTRA_PAYMENT;
     }
 
     @Override
