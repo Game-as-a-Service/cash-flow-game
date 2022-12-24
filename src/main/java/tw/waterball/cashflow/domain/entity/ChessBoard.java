@@ -21,4 +21,8 @@ public class ChessBoard {
     public static EventType[] getInBoard() {
         return IN_BOARD;
     }
+
+    int move(int begin){
+        // https://www.baeldung.com/java-circular-linked-list
+    }
 }
