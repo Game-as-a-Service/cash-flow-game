@@ -1,3 +1,16 @@
 package tw.waterball.cashflow.domain.entity.event;
 
-public class CharityEvent {}
+import tw.waterball.cashflow.domain.entity.Actor;
+
+public class CharityEvent implements Event{
+    @Override
+    public EventType getEventType() {
+        return EventType.CHARITY;
+    }
+
+    public void execute(Actor actor) {
+        actor.setTurnNumber(3);
+        actor.setDiceCount(2);
+        actor.setState(EventType.CHARITY);
+    }
+}
