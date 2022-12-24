@@ -29,5 +29,9 @@ public enum EventType {
     /**
      * 交易機會
      */
-    DEAL_OPPORTUNITY
+    DEAL_OPPORTUNITY,
+    /**
+     * 市場風雲
+     */
+    MARKET
 }
