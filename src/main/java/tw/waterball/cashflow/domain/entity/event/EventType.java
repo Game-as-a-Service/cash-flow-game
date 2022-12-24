@@ -1,5 +1,10 @@
 package tw.waterball.cashflow.domain.entity.event;
 
+/**
+ * 主要事件的種類
+ *
+ * @see ExtraPaymentEventType
+ */
 public enum EventType {
     /**
      * 慈善事件

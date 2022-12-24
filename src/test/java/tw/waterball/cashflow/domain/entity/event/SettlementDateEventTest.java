@@ -21,15 +21,14 @@ class SettlementDateEventTest {
         // Given 玩家A，總收入2500，支出1590，儲蓄 200
         Actor actor = new Actor("玩家A", Engineer);
         FinancialStatement financialStatement = actor.getFinancialStatement();
-        BigDecimal cash = BigDecimal.valueOf(200);
-        financialStatement.addCash(cash);
+        BigDecimal totalIncomeAmount = financialStatement.getTotalIncomeAmount();
+        BigDecimal totalExpenseAmount = financialStatement.getTotalExpenseAmount();
+        BigDecimal cash = financialStatement.getCash();
 
         // When 玩家A擲骰子，並走到銀行結算日格子
         settlementDateEvent.execute(actor);
 
         // Then 領取 910，儲蓄1110
-        BigDecimal totalIncomeAmount = financialStatement.getTotalIncomeAmount();
-        BigDecimal totalExpenseAmount = financialStatement.getTotalExpenseAmount();
         BigDecimal finalCash = cash.add(totalIncomeAmount).subtract(totalExpenseAmount);
         Assertions.assertEquals(finalCash, actor.getFinancialStatement().getCash());
     }
@@ -40,15 +39,15 @@ class SettlementDateEventTest {
         Actor actor = new Actor("玩家A", Engineer);
         FinancialStatement financialStatement = actor.getFinancialStatement();
         financialStatement.addExpense(Expense.builder(ExpenseType.Interest).amount(BigDecimal.valueOf(920)).build());
-        BigDecimal cash = BigDecimal.valueOf(200);
-        financialStatement.addCash(cash);
+        BigDecimal totalIncomeAmount = financialStatement.getTotalIncomeAmount();
+        BigDecimal totalExpenseAmount = financialStatement.getTotalExpenseAmount();
+        BigDecimal cash = financialStatement.getCash();
 
         // When 玩家A擲骰子，並走到銀行結算日格子
         settlementDateEvent.execute(actor);
 
         // Then 支付 910，儲蓄190
-        BigDecimal totalIncomeAmount = financialStatement.getTotalIncomeAmount();
-        BigDecimal totalExpenseAmount = financialStatement.getTotalExpenseAmount();
+        System.out.println(financialStatement);
         BigDecimal finalCash = cash.add(totalIncomeAmount).subtract(totalExpenseAmount);
         Assertions.assertEquals(finalCash, actor.getFinancialStatement().getCash());
     }
@@ -59,7 +58,9 @@ class SettlementDateEventTest {
         // Given 玩家A，總收入2500，支出1590，儲蓄 200
         Actor actor = new Actor("玩家A", Engineer);
         FinancialStatement financialStatement = actor.getFinancialStatement();
-        financialStatement.addExpense(Expense.builder(ExpenseType.Interest).amount(BigDecimal.valueOf(920)).build());
+        financialStatement.addExpense(Expense.builder(ExpenseType.Interest).amount(
+                financialStatement.getCash().add(financialStatement.getTotalIncomeAmount())
+        ).build());
 
         // When 玩家A擲骰子，並走到銀行結算日格子 Then 破產
         Assertions.assertThrows(InsufficientCashException.class, () -> settlementDateEvent.execute(actor));
