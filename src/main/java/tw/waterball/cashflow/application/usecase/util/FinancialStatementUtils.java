@@ -17,6 +17,7 @@ public class FinancialStatementUtils {
         switch (career) {
             case Engineer:
                 financialStatement = new FinancialStatement();
+                financialStatement.setCash(BigDecimal.valueOf(5000));
                 financialStatement.addIncome(Income.builder(IncomeType.Salary).amount(BigDecimal.valueOf(2500)).build());
 
                 financialStatement.addExpense(Expense.builder(ExpenseType.Tax).amount(BigDecimal.valueOf(460)).build());

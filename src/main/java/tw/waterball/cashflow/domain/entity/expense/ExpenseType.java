@@ -4,28 +4,17 @@ public enum ExpenseType {
     /**
      * 利息
      */
-    Interest("Interest"),
+    Interest,
     /**
      * 小孩支出
      */
-    EducationExpense("EducationExpense"), Tax("Tax"),
+    EducationExpense, Tax,
     /**
      * 房貸
      */
-    HomeMortgagePayment("HomeMortgage"),
+    HomeMortgagePayment,
     /**
      * 車貸
      */
-    CarLoanPayment("CarLoans"), CreditCardPayment("CreditCard"), CashLoanPayment("CashLoan"), RetailPayment("RetailDebt"), OtherExpenses("OtherExpenses");
-
-    private String liabilityType;
-
-    private ExpenseType(String liabilityType) {
-        this.liabilityType = liabilityType;
-    }
-
-    public static ExpenseType getExpenseTypeByLiabilityType(String liabilityType) {
-        return ExpenseType.valueOf(liabilityType);
-    }
-
+    CarLoanPayment, CreditCardPayment, CashLoanPayment, RetailPayment, OtherExpenses;
 }

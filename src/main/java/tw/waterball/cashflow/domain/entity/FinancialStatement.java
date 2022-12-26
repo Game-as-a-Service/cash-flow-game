@@ -1,5 +1,6 @@
 package tw.waterball.cashflow.domain.entity;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
@@ -19,6 +20,7 @@ import java.util.Optional;
 
 @NoArgsConstructor
 @ToString
+@Getter
 @Setter
 public class FinancialStatement {
     private BigDecimal passiveIncome;
@@ -91,8 +93,20 @@ public class FinancialStatement {
         }
     }
 
+    public void updateExpense(Expense expense) {
+        if (expenseMap.containsKey(expense.getType())) {
+            expenseMap.put(expense.getType(), expense);
+        }
+    }
+
     public void addLiability(Liability liability) {
         if (!liabilityMap.containsKey(liability.getType())) {
+            liabilityMap.put(liability.getType(), liability);
+        }
+    }
+
+    public void updateLiability(Liability liability) {
+        if (liabilityMap.containsKey(liability.getType())) {
             liabilityMap.put(liability.getType(), liability);
         }
     }
@@ -114,6 +128,6 @@ public class FinancialStatement {
     }
 
     public void subtractCash(BigDecimal amount) {
-        this.cash.subtract(amount);
+        this.cash = this.cash.subtract(amount);
     }
 }
