@@ -1,8 +1,12 @@
 package tw.waterball.cashflow.application.usecase;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import tw.waterball.cashflow.application.repository.ActorRepository;
 import tw.waterball.cashflow.domain.entity.Actor;
 import tw.waterball.cashflow.domain.entity.FinancialStatement;
+import tw.waterball.cashflow.domain.entity.exception.ActorNotFound;
 import tw.waterball.cashflow.domain.entity.expense.Expense;
 import tw.waterball.cashflow.domain.entity.expense.ExpenseType;
 import tw.waterball.cashflow.domain.entity.liability.Liability;
@@ -13,11 +17,18 @@ import java.math.RoundingMode;
 import java.util.Optional;
 
 @Slf4j
+@Service
 public class BorrowMoneyUseCase {
     final BigDecimal CASH_LOAN_INTEREST_RATIO = BigDecimal.valueOf(0.1);
+    @Autowired
+    private ActorRepository actorRepository;
 
     public Actor borrowMoney(Actor actor, BigDecimal moneyAmount) {
         log.debug("In BorrowMoneyUseCase");
+        Optional<Actor> actorOptional = actorRepository.findGameByNickname(actor.getActorName());
+        if (actorOptional.isPresent()) {
+            throw new ActorNotFound("Actor is not exist");
+        }
         if (isNullOrZero(moneyAmount)) {
             throw new RuntimeException("Input parameter moneyAmount is null or zero");
         }
