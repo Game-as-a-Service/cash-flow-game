@@ -51,6 +51,7 @@ class ChooseDreamUseCaseTest {
 
     //Then
     Assertions.assertEquals(dream, actor.getDream());
+    Mockito.verify(actorRepository, Mockito.times(1)).save(actor);
   }
 
 }
