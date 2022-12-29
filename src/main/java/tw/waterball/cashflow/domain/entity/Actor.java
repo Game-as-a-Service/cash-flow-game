@@ -15,6 +15,7 @@ public class Actor {
     private final String actorName;
     private final Career career;
     private FinancialStatement financialStatement;
+    private int position = 0;
 
     public Actor(final String actorName, final Career career) {
         this.actorName = actorName;

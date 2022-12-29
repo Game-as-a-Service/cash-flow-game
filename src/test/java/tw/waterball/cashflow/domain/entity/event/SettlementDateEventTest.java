@@ -18,7 +18,7 @@ class SettlementDateEventTest {
 
     @Test
     void giveIncomeMoreThenExpense_whenDrawSettlementDateEvent_thenIncreaseCash() throws InsufficientCashException {
-        // Given 玩家A，總收入2500，支出1590，儲蓄 200
+        // Given 玩家A
         Actor actor = new Actor("玩家A", Engineer);
         FinancialStatement financialStatement = actor.getFinancialStatement();
         BigDecimal totalIncomeAmount = financialStatement.getTotalIncomeAmount();
@@ -28,14 +28,14 @@ class SettlementDateEventTest {
         // When 玩家A擲骰子，並走到銀行結算日格子
         settlementDateEvent.execute(actor);
 
-        // Then 領取 910，儲蓄1110
+        // Then 領取
         BigDecimal finalCash = cash.add(totalIncomeAmount).subtract(totalExpenseAmount);
         Assertions.assertEquals(finalCash, actor.getFinancialStatement().getCash());
     }
 
     @Test
     void giveIncomeLessThenExpense_whenDrawSettlementDateEvent_thenDecreaseCash() throws InsufficientCashException {
-        // Given 玩家A，總收入2500，支出1590，儲蓄 200
+        // Given 玩家A
         Actor actor = new Actor("玩家A", Engineer);
         FinancialStatement financialStatement = actor.getFinancialStatement();
         financialStatement.addExpense(Expense.builder(ExpenseType.Interest).amount(BigDecimal.valueOf(920)).build());
@@ -46,7 +46,7 @@ class SettlementDateEventTest {
         // When 玩家A擲骰子，並走到銀行結算日格子
         settlementDateEvent.execute(actor);
 
-        // Then 支付 910，儲蓄190
+        // Then 支付
         System.out.println(financialStatement);
         BigDecimal finalCash = cash.add(totalIncomeAmount).subtract(totalExpenseAmount);
         Assertions.assertEquals(finalCash, actor.getFinancialStatement().getCash());
@@ -55,7 +55,7 @@ class SettlementDateEventTest {
 
     @Test
     void giveExpenseMoreThenIncomePlusCash_whenDrawSettlementDateEvent_thenBankruptcy() {
-        // Given 玩家A，總收入2500，支出1590，儲蓄 200
+        // Given 玩家A
         Actor actor = new Actor("玩家A", Engineer);
         FinancialStatement financialStatement = actor.getFinancialStatement();
         financialStatement.addExpense(Expense.builder(ExpenseType.Interest).amount(
