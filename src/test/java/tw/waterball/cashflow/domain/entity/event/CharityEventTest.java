@@ -4,6 +4,7 @@ package tw.waterball.cashflow.domain.entity.event;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import tw.waterball.cashflow.domain.entity.Actor;
+import tw.waterball.cashflow.domain.entity.ActorState;
 import tw.waterball.cashflow.domain.entity.exception.InsufficientCashException;
 
 import static tw.waterball.cashflow.domain.entity.Career.Engineer;
@@ -22,6 +23,6 @@ class CharityEventTest {
         // Then
         Assertions.assertEquals(3, actor.getTurnNumber());
         Assertions.assertEquals(2, actor.getDiceCount());
-        Assertions.assertEquals(EventType.CHARITY, actor.getState());
+        Assertions.assertEquals(ActorState.CHARITY, actor.getState());
     }
 }

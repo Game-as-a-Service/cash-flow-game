@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import tw.waterball.cashflow.application.usecase.util.FinancialStatementUtils;
-import tw.waterball.cashflow.domain.entity.event.EventType;
 
 @Getter
 @Setter
@@ -16,9 +15,14 @@ public class Actor {
     private final String actorName;
     private final Career career;
     private FinancialStatement financialStatement;
-    private int turnNumber;
+    /**
+     * 角色目前狀態
+     */
+    @Getter
+    @Setter
+    private ActorState state = ActorState.NONE;
     private int diceCount = 1;
-    private EventType state;
+    private int turnNumber = 1;
 
     public Actor(final String actorName, final Career career) {
         this.actorName = actorName;
