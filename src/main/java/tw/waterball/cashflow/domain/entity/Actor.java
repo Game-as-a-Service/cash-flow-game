@@ -16,6 +16,14 @@ public class Actor {
     private final Career career;
     private FinancialStatement financialStatement;
     private int position = 0;
+    /**
+     * 角色目前狀態
+     */
+    @Getter
+    @Setter
+    private ActorState state = ActorState.NONE;
+    private int diceCount = 1;
+    private int turnNumber = 1;
 
     public Actor(final String actorName, final Career career) {
         this.actorName = actorName;
