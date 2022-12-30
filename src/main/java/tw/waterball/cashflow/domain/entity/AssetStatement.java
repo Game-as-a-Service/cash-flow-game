@@ -98,7 +98,7 @@ public class AssetStatement {
      * @return 所有的房地產資產項目
      */
     public Collection<FinancialItem> getAllRealEstates() {
-        return Collections.unmodifiableCollection(this.fundMap.values());
+        return Collections.unmodifiableCollection(this.realEstateMap.values());
     }
 
     /**
