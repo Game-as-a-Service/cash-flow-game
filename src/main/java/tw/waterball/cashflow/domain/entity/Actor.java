@@ -6,8 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 import tw.waterball.cashflow.application.usecase.util.FinancialStatementUtils;
 
-@ToString
 @Getter
+@ToString
 @EqualsAndHashCode
 public class Actor {
     @Setter
@@ -41,7 +41,6 @@ public class Actor {
      */
     @Setter
     private int turnNumber = 1;
-
 
     public Actor(final String actorName, final Career career) {
         this.actorName = actorName;

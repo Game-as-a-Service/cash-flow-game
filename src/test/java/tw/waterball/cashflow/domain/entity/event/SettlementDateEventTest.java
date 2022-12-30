@@ -10,7 +10,7 @@ import tw.waterball.cashflow.domain.entity.expense.ExpenseType;
 
 import java.math.BigDecimal;
 
-import static tw.waterball.cashflow.domain.entity.Career.Engineer;
+import static tw.waterball.cashflow.domain.entity.Career.ENGINEER;
 
 class SettlementDateEventTest {
 
@@ -19,7 +19,7 @@ class SettlementDateEventTest {
     @Test
     void giveIncomeMoreThenExpense_whenDrawSettlementDateEvent_thenIncreaseCash() throws InsufficientCashException {
         // Given 玩家A
-        Actor actor = new Actor("玩家A", Engineer);
+        Actor actor = new Actor("玩家A", ENGINEER);
         FinancialStatement financialStatement = actor.getFinancialStatement();
         BigDecimal totalIncomeAmount = financialStatement.getTotalIncomeAmount();
         BigDecimal totalExpenseAmount = financialStatement.getTotalExpenseAmount();
@@ -36,7 +36,7 @@ class SettlementDateEventTest {
     @Test
     void giveIncomeLessThenExpense_whenDrawSettlementDateEvent_thenDecreaseCash() throws InsufficientCashException {
         // Given 玩家A
-        Actor actor = new Actor("玩家A", Engineer);
+        Actor actor = new Actor("玩家A", ENGINEER);
         FinancialStatement financialStatement = actor.getFinancialStatement();
         financialStatement.addExpense(Expense.builder(ExpenseType.INTEREST).amount(BigDecimal.valueOf(920)).build());
         BigDecimal totalIncomeAmount = financialStatement.getTotalIncomeAmount();
@@ -55,7 +55,7 @@ class SettlementDateEventTest {
     @Test
     void giveExpenseMoreThenIncomePlusCash_whenDrawSettlementDateEvent_thenBankruptcy() {
         // Given 玩家A
-        Actor actor = new Actor("玩家A", Engineer);
+        Actor actor = new Actor("玩家A", ENGINEER);
         FinancialStatement financialStatement = actor.getFinancialStatement();
         financialStatement.addExpense(Expense.builder(ExpenseType.INTEREST).amount(
                 financialStatement.getCash().add(financialStatement.getTotalIncomeAmount())

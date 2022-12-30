@@ -7,7 +7,7 @@ import tw.waterball.cashflow.domain.entity.Actor;
 import tw.waterball.cashflow.domain.entity.ActorState;
 import tw.waterball.cashflow.domain.entity.exception.InsufficientCashException;
 
-import static tw.waterball.cashflow.domain.entity.Career.Engineer;
+import static tw.waterball.cashflow.domain.entity.Career.ENGINEER;
 
 class CharityEventTest {
     CharityEvent charityEvent = new CharityEvent();
@@ -15,7 +15,7 @@ class CharityEventTest {
     @Test
     void giveActor_whenCharityEvent_thenTurnNumber3DiceCount2StateCharity() throws InsufficientCashException {
         // Given 玩家A
-        Actor actor = new Actor("玩家A", Engineer);
+        Actor actor = new Actor("玩家A", ENGINEER);
 
         // When
         charityEvent.execute(actor);

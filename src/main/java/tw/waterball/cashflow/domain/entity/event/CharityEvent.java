@@ -3,7 +3,7 @@ package tw.waterball.cashflow.domain.entity.event;
 import tw.waterball.cashflow.domain.entity.Actor;
 import tw.waterball.cashflow.domain.entity.ActorState;
 
-public class CharityEvent implements Event{
+public class CharityEvent implements Event {
     @Override
     public EventType getEventType() {
         return EventType.CHARITY;

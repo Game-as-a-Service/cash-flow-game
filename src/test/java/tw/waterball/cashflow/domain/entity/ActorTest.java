@@ -13,8 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ActorTest {
     @Test
-    public void givenPlayerWithPassiveIncomeGreaterThanExpenses_whenIsInOuterCircle_thenReturnsTrue() {
-        Actor actor = new Actor("Nick", Career.Engineer);
+    void givenPlayerWithPassiveIncomeGreaterThanExpenses_whenIsInOuterCircle_thenReturnsTrue() {
+        Actor actor = new Actor("Nick", Career.ENGINEER);
         FinancialStatement financialStatement = new FinancialStatement();
         Map<ExpenseType, Expense> expenseMap = new HashMap<>();
         expenseMap.put(ExpenseType.TAX,
@@ -26,8 +26,8 @@ class ActorTest {
     }
 
     @Test
-    public void givenPlayerWithPassiveIncomeLessThanExpenses_whenIsInOuterCircle_thenReturnsFalse() {
-        Actor actor = new Actor("Nick", Career.Engineer);
+    void givenPlayerWithPassiveIncomeLessThanExpenses_whenIsInOuterCircle_thenReturnsFalse() {
+        Actor actor = new Actor("Nick", Career.ENGINEER);
         FinancialStatement financialStatement = new FinancialStatement();
         Map<ExpenseType, Expense> expenseMap = new HashMap<>();
         expenseMap.put(ExpenseType.TAX,
@@ -39,8 +39,8 @@ class ActorTest {
     }
 
     @Test
-    public void givenPlayerWithNoPassiveIncome_whenIsInOuterCircle_thenReturnsFalse() {
-        Actor actor = new Actor("Nick", Career.Engineer);
+    void givenPlayerWithNoPassiveIncome_whenIsInOuterCircle_thenReturnsFalse() {
+        Actor actor = new Actor("Nick", Career.ENGINEER);
         FinancialStatement financialStatement = new FinancialStatement();
         Map<ExpenseType, Expense> expenseMap = new HashMap<>();
         expenseMap.put(ExpenseType.TAX,
@@ -52,8 +52,8 @@ class ActorTest {
     }
 
     @Test
-    public void givenPlayerWithNoExpenses_whenIsInOuterCircle_thenReturnsTrue() {
-        Actor actor = new Actor("Nick", Career.Engineer);
+    void givenPlayerWithNoExpenses_whenIsInOuterCircle_thenReturnsTrue() {
+        Actor actor = new Actor("Nick", Career.ENGINEER);
         FinancialStatement financialStatement = new FinancialStatement();
         Map<ExpenseType, Expense> expenseMap = new HashMap<>();
         expenseMap.put(ExpenseType.TAX,
@@ -65,8 +65,8 @@ class ActorTest {
     }
 
     @Test
-    public void givenPlayerWithEqualPassiveIncomeAndExpenses_whenIsInOuterCircle_thenReturnsFalse() {
-        Actor actor = new Actor("Nick", Career.Engineer);
+    void givenPlayerWithEqualPassiveIncomeAndExpenses_whenIsInOuterCircle_thenReturnsFalse() {
+        Actor actor = new Actor("Nick", Career.ENGINEER);
         FinancialStatement financialStatement = new FinancialStatement();
         Map<ExpenseType, Expense> expenseMap = new HashMap<>();
         expenseMap.put(ExpenseType.TAX,

@@ -30,8 +30,8 @@ class StartGameUserCaseTest {
     void givenEqualOrGreaterOnePlayer_whenStartGame_thenGameStarted()
     {
         //Given
-        Actor actor1 = new Actor("name_1", Career.Engineer);
-        Actor actor2 = new Actor("name_2", Career.Teacher);
+        Actor actor1 = new Actor("name_1", Career.ENGINEER);
+        Actor actor2 = new Actor("name_2", Career.TEACHER);
         StartGameUseCase game = new StartGameUseCase();
         game.add(actor1);
         game.add(actor2);
@@ -47,8 +47,8 @@ class StartGameUserCaseTest {
     void givenEngineerPlayerAndTeacherPlayer_whenStartGame_thenInitializeEachFinancialStatement()
     {
         //Given
-        Actor engineer = new Actor("name_1", Career.Engineer);
-        Actor teacher = new Actor("name_2", Career.Teacher);
+        Actor engineer = new Actor("name_1", Career.ENGINEER);
+        Actor teacher = new Actor("name_2", Career.TEACHER);
 
         StartGameUseCase game = new StartGameUseCase();
         game.add(engineer);

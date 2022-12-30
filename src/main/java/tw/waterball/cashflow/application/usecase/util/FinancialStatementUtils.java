@@ -12,10 +12,14 @@ import tw.waterball.cashflow.domain.entity.liability.LiabilityType;
 import java.math.BigDecimal;
 
 public class FinancialStatementUtils {
+    private FinancialStatementUtils() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static FinancialStatement initialize(Career career) {
         FinancialStatement financialStatement;
         switch (career) {
-            case Engineer:
+            case ENGINEER:
                 financialStatement = new FinancialStatement();
                 financialStatement.addIncome(Income.builder(IncomeType.SALARY).amount(BigDecimal.valueOf(2500)).build());
 
@@ -31,7 +35,7 @@ public class FinancialStatementUtils {
 
                 financialStatement.addCash(BigDecimal.valueOf(5000));
                 return financialStatement;
-            case Teacher:
+            case TEACHER:
                 financialStatement = new FinancialStatement();
                 financialStatement.addIncome(Income.builder(IncomeType.SALARY).amount(BigDecimal.valueOf(1500)).build());
 
