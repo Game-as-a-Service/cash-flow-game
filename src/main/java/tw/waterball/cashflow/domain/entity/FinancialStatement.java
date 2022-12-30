@@ -112,6 +112,11 @@ public class FinancialStatement {
         return expenseMap;
     }
 
+    /**
+     * @see #addExpense(Expense)
+     * @deprecated 不建議直接設定內部的 map
+     */
+    @Deprecated
     public void setExpenseMap(final Map<ExpenseType, Expense> expenseMap) {
         this.expenseMap = expenseMap;
     }
