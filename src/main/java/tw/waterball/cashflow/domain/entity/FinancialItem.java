@@ -60,6 +60,16 @@ public class FinancialItem {
         this.count = count;
     }
 
+    /**
+     * @return 總金額 = 單價 * 數量
+     *
+     * @see #getAmount()
+     * @see #getCount()
+     */
+    public BigDecimal getTotalAmount() {
+        return this.amount.multiply(BigDecimal.valueOf(this.count));
+    }
+
     public static FinancialItemBuilder builder(@NonNull String id, @NonNull FinancialItemName name, @NonNull BigDecimal amount) {
         return new FinancialItemBuilder(id, name, amount);
     }
