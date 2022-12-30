@@ -85,7 +85,7 @@ public class IncomeStatement {
     }
 
     /**
-     * 根據 item ID 期除指定的收入項目。
+     * 刪除指定的收入項目。
      *
      * @param id 收入 item ID
      */
@@ -109,11 +109,15 @@ public class IncomeStatement {
      * @return 總被動收入金額
      */
     public BigDecimal getTotalPassiveIncomeAmount() {
-        BigDecimal totalInterestAmount = interestMap.values().stream().map(FinancialItem::getAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
-        BigDecimal totalDividendAmount = dividendMap.values().stream().map(FinancialItem::getAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
-        BigDecimal totalRealEstateAmount = realEstateMap.values().stream().map(FinancialItem::getAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
-        BigDecimal totalBusinessAmount = businessMap.values().stream().map(FinancialItem::getAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal totalInterestAmount = interestMap.values().stream().map(FinancialItem::getTotalAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal totalDividendAmount = dividendMap.values().stream().map(FinancialItem::getTotalAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal totalRealEstateAmount = realEstateMap.values().stream().map(FinancialItem::getTotalAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal totalBusinessAmount = businessMap.values().stream().map(FinancialItem::getTotalAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
         return totalInterestAmount.add(totalDividendAmount).add(totalRealEstateAmount).add(totalBusinessAmount);
+    }
+
+    public BigDecimal getTotalIncomeAmount() {
+        return this.salary.getAmount().add(getTotalPassiveIncomeAmount());
     }
 
     @Override
