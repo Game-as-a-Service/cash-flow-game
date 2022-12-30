@@ -1,5 +1,6 @@
 package tw.waterball.cashflow.domain.entity;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -17,6 +18,13 @@ public class ExpenseStatement {
 
     public void removeExpense(String id) {
         this.map.remove(id);
+    }
+
+    /**
+     * @return 總支出金額
+     */
+    public BigDecimal getTotalExpenseAmount() {
+        return map.values().stream().map(FinancialItem::getTotalAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     @Override
