@@ -19,8 +19,7 @@ public class UnemploymentEvent implements Event {
         FinancialStatement financialStmt = actor.getFinancialStatement();
         final BigDecimal payment = financialStmt.getTotalExpenseAmount();
 
-        if(financialStmt.getCash().compareTo(payment) < 0)
-        {
+        if (financialStmt.getCash().compareTo(payment) < 0) {
             throw new InsufficientCashException();
         }
 
