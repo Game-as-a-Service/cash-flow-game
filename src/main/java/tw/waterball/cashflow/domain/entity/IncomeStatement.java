@@ -115,4 +115,9 @@ public class IncomeStatement {
         BigDecimal totalBusinessAmount = businessMap.values().stream().map(FinancialItem::getAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
         return totalInterestAmount.add(totalDividendAmount).add(totalRealEstateAmount).add(totalBusinessAmount);
     }
+
+    @Override
+    public String toString() {
+        return "IncomeStatement{" + "salary=" + salary + ", interests=" + interestMap.values() + ", dividends=" + dividendMap.values() + ", realEstates=" + realEstateMap.values() + ", businesses=" + businessMap.values() + '}';
+    }
 }
