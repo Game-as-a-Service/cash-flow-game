@@ -13,8 +13,7 @@ public class Expense {
     private ExpenseType type;
     private BigDecimal amount;
 
-    public static ExpenseBuilder builder(ExpenseType type)
-    {
+    public static ExpenseBuilder builder(ExpenseType type) {
         return new ExpenseBuilder().type(type);
     }
 }

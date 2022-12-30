@@ -37,10 +37,9 @@ public class ExtraPaymentEvent implements Event {
     }
 
     @Override
-    public void execute(Actor actor) throws InsufficientCashException
-    {
+    public void execute(Actor actor) throws InsufficientCashException {
         FinancialStatement financialStatement = actor.getFinancialStatement();
-        if (financialStatement.getCash().compareTo(getPayment()) == -1) {
+        if (financialStatement.getCash().compareTo(getPayment()) < 0) {
             throw new InsufficientCashException();
         } else {
             financialStatement.subtractCash(getPayment());
