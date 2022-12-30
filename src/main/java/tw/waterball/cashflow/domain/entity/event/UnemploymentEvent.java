@@ -25,7 +25,6 @@ public class UnemploymentEvent implements Event {
         }
 
         financialStmt.subtractCash(payment); // 需付清所有 expenses
-        financialStmt.deleteAllExpenses();
 
         actor.setState(ActorState.UNEMPLOYMENT);
         actor.setDiceCount(1);
