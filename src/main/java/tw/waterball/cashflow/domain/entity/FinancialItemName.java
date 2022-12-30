@@ -2,6 +2,12 @@ package tw.waterball.cashflow.domain.entity;
 
 public enum FinancialItemName {
     SALARY_TEACHER_K_12,
+    SALARY_LAWYER,
+    SALARY_PILOT,
+    SALARY_MECHANIC,
+    SALARY_SECRETARY,
+    SALARY_POLICE,
+    SALARY_ENGINEER,
     /**
      * 可轉讓定存單
      * @see <a href="https://rich01.com/what-is-cds/">https://rich01.com/what-is-cds/</a>
@@ -14,7 +20,7 @@ public enum FinancialItemName {
     /**
      * 稅
      */
-    TAXES,
+    TAX,
     /**
      * 房屋抵押
      */
