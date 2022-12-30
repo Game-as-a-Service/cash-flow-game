@@ -1,18 +1,13 @@
 package tw.waterball.cashflow.domain.entity;
 
-import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.NonNull;
 import lombok.ToString;
 
 import java.math.BigDecimal;
-import java.util.Optional;
+import java.util.Objects;
 
-@Builder
 @ToString
-@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class FinancialItem {
     /**
      * Item ID。<br>
@@ -25,40 +20,79 @@ public class FinancialItem {
     private final FinancialItemName name;
 
     /**
-     * 數量，選填，例如薪資就沒有數量。
-     */
-    private Integer count;
-
-    /**
      * 單價。
      */
     @Getter
-    @Setter
-    private final BigDecimal amount;
+    private BigDecimal amount;
 
     /**
-     * @return 數量
+     * 數量。
      */
-    public Optional<Integer> getCount()
-    {
-        return Optional.ofNullable(this.count);
+    @Getter
+    private int count;
+
+    private FinancialItem(String id, FinancialItemName name, BigDecimal amount, int count) {
+        this.id = id;
+        this.name = name;
+        setAmount(amount);
+        setCount(count);
+    }
+
+    /**
+     * @param amount 大於 0 的單價金額
+     * @throws IllegalArgumentException if amount < 1
+     */
+    public void setAmount(BigDecimal amount) {
+        if(Objects.isNull(amount) || BigDecimal.ONE.compareTo(amount) == 1) {
+            throw new IllegalArgumentException("Amount must > 0");
+        }
+        this.amount = amount;
     }
 
     /**
      * @param count 大於 0 的數量
-     * @throws IllegalArgumentException if count <= 0
+     * @throws IllegalArgumentException if count < 1
      */
-    public void setCount(int count)
-    {
-        if(count <= 0) {
-            throw new IllegalArgumentException("Count must be greater than 0.");
+    public void setCount(int count) {
+        if (count < 1) {
+            throw new IllegalArgumentException("Count must > 0.");
         }
-
         this.count = count;
     }
 
-    public static FinancialItemBuilder builder(String id, FinancialItemName name, BigDecimal amount)
-    {
-        return new FinancialItemBuilder().id(id).name(name).amount(amount);
+    public static FinancialItemBuilder builder(@NonNull String id, @NonNull FinancialItemName name, @NonNull BigDecimal amount) {
+        return new FinancialItemBuilder(id, name, amount);
+    }
+
+    public static final class FinancialItemBuilder {
+        private String id;
+        private FinancialItemName name;
+        private BigDecimal amount;
+        private int count = 1;
+
+        private FinancialItemBuilder(String id, FinancialItemName name, BigDecimal amount) {
+            this.id = id;
+            this.name = name;
+            this.amount = amount;
+        }
+
+        public FinancialItemBuilder amount(BigDecimal amount) {
+            this.amount = amount;
+            return this;
+        }
+
+        /**
+         * 設定數量，預設 1。
+         * @param count 數量
+         * @return builder
+         */
+        public FinancialItemBuilder count(int count) {
+            this.count = count;
+            return this;
+        }
+
+        public FinancialItem build() {
+            return new FinancialItem(id, name, amount, count);
+        }
     }
 }
