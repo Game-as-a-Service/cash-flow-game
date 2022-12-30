@@ -12,5 +12,9 @@ public enum ActorState {
     /**
      * 已破展
      */
-    BANKRUPTCY
+    BANKRUPTCY,
+    /**
+     * 慈善事件
+     */
+    CHARITY
 }

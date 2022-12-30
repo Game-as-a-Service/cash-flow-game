@@ -11,7 +11,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class StartGameUserCaseTest {
+class StartGameUserCaseTest {
 
     @Test
     void givenNoPlayer_whenStartGame_thenStartIsNotStarted()

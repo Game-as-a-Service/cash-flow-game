@@ -25,5 +25,13 @@ public enum EventType {
     /**
      * 失業
      */
-    UNEMPLOYMENT
+    UNEMPLOYMENT,
+    /**
+     * 交易機會
+     */
+    DEAL_OPPORTUNITY,
+    /**
+     * 市場風雲
+     */
+    MARKET
 }

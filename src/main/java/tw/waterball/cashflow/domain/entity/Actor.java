@@ -21,6 +21,15 @@ public class Actor {
 
     @Getter
     private FinancialStatement financialStatement;
+    private int position = 0;
+    /**
+     * 角色目前狀態
+     */
+    @Getter
+    @Setter
+    private ActorState state = ActorState.NONE;
+    private int diceCount = 1;
+    private int turnNumber = 1;
 
     /**
      * 角色目前狀態
