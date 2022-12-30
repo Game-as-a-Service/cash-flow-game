@@ -7,41 +7,29 @@ import lombok.ToString;
 import tw.waterball.cashflow.application.usecase.util.FinancialStatementUtils;
 
 @ToString
+@Getter
 @EqualsAndHashCode
 public class Actor {
     @Setter
-    @Getter
     private String dream;
 
-    @Getter
     private final String actorName;
 
-    @Getter
     private final Career career;
 
-    @Getter
     private FinancialStatement financialStatement;
+    @Setter
     private int position = 0;
-    /**
-     * 角色目前狀態
-     */
-    @Getter
-    @Setter
-    private ActorState state = ActorState.NONE;
-    private int diceCount = 1;
-    private int turnNumber = 1;
 
     /**
-     * 角色目前狀態
+     * 角色目前狀態.
      */
-    @Getter
     @Setter
     private ActorState state = ActorState.NONE;
 
     /**
-     * 骰子顆數
+     * 骰子顆數.
      */
-    @Getter
     @Setter
     private int diceCount = 1;
 
@@ -51,7 +39,6 @@ public class Actor {
      *
      * @see #getState()
      */
-    @Getter
     @Setter
     private int turnNumber = 1;
 

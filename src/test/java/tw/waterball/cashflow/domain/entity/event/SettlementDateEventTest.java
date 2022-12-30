@@ -57,7 +57,7 @@ class SettlementDateEventTest {
         // Given 玩家A
         Actor actor = new Actor("玩家A", Engineer);
         FinancialStatement financialStatement = actor.getFinancialStatement();
-        financialStatement.addExpense(Expense.builder(ExpenseType.Interest).amount(
+        financialStatement.addExpense(Expense.builder(ExpenseType.INTEREST).amount(
                 financialStatement.getCash().add(financialStatement.getTotalIncomeAmount())
         ).build());
 
