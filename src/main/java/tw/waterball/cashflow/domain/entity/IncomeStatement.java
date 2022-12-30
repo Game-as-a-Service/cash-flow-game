@@ -1,6 +1,5 @@
 package tw.waterball.cashflow.domain.entity;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -11,7 +10,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
 
-@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
+@RequiredArgsConstructor
 public class IncomeStatement {
     @Getter
     private final FinancialItem salary;
