@@ -23,6 +23,25 @@ class BigOpportunityEventTest {
         bigOpportunityEvent.execute(actor);
 
         // Then
+        BigDecimal paidAmount = currentCash.subtract(actor.getFinancialStatement().getCash());
+        assertThat(paidAmount).isEqualByComparingTo(BigDecimal.valueOf(20000));
+//        儲蓄減少為2,980,000，
+//        負債增加為 105,000，
+//        手上擁有該房子，每月總支出增為 10,100。
+//        進度條為 1,000,完成值10,100
+    }
+
+    @Test
+    void giveDownPaymentBiggerThenCash_whenBigOpportunityEvent_thenThrowInsufficientCashException() throws InsufficientCashException {
+        // Given
+        Actor actor = new Actor("actor_a", Career.Engineer);
+        BigDecimal currentCash = actor.getFinancialStatement().getCash();
+
+        // When 假裝抽到 BEDROOMS3_LIVING2_FOR_SALE
+        Event bigOpportunityEvent = EventFactory.getBigOpportunityEvent(BigOpportunityEventType.BEDROOMS3_LIVING2_FOR_SALE);
+        bigOpportunityEvent.execute(actor);
+
+        // Then
         // 支付 20,000
         BigDecimal paidAmount = currentCash.subtract(actor.getFinancialStatement().getCash());
         assertThat(paidAmount).isEqualByComparingTo(BigDecimal.valueOf(20000));
