@@ -34,7 +34,7 @@ public class BorrowMoneyUseCase {
         }
         actor.setFinancialStatement(financialStatementUpdate(actor.getFinancialStatement(), moneyAmount));
         log.debug("Finish BorrowMoneyUseCase");
-        return actor;
+        return actorRepository.save(actor);
     }
 
     private FinancialStatement financialStatementUpdate(FinancialStatement financialStatement, BigDecimal moneyAmount) {
