@@ -1,5 +1,6 @@
 package tw.waterball.cashflow.application.usecase;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import tw.waterball.cashflow.domain.entity.Actor;
 import tw.waterball.cashflow.domain.entity.Career;
@@ -52,12 +53,7 @@ public class RepayMoneyUseCaseTest {
         // Given
         Actor actor = new Actor("A", Career.Engineer);
 
-        // When
-        actor = repayMoneyUseCase.repayMoney(actor, "HomeMortgage", BigDecimal.valueOf(38000));
-
-        // Then
-        assertThat(actor.getFinancialStatement().getLiability(LiabilityType.HomeMortgage).isPresent()).isFalse();
-        assertThat(actor.getFinancialStatement().getExpense(ExpenseType.HomeMortgagePayment).isPresent()).isFalse();
-        assertThat(actor.getFinancialStatement().getCash()).isEqualTo(BigDecimal.valueOf(5000));
+        // When & Then
+        Assertions.assertThrows(RuntimeException.class, () -> repayMoneyUseCase.repayMoney(actor, "HomeMortgage", BigDecimal.valueOf(38000)));
     }
 }

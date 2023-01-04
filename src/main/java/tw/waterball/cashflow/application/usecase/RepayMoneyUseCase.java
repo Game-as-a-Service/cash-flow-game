@@ -25,14 +25,10 @@ public class RepayMoneyUseCase {
     @Autowired
     private ActorRepository actorRepository;
 
-    public static void main(String args[]) {
-        System.out.println(BigDecimal.valueOf(5000).subtract(BigDecimal.valueOf(2000)));
-    }
-
     public Actor repayMoney(Actor actor, String liabilityTypeString, BigDecimal repayMoneyAmount) {
         log.debug("In RepayMoneyUseCase");
         Optional<Actor> actorOptional = actorRepository.findGameByNickname(actor.getActorName());
-        if (actorOptional.isPresent()) {
+        if (actorOptional.isEmpty()) {
             throw new ActorNotFound("Actor is not exist");
         }
         if (!StringUtils.hasText(liabilityTypeString)) {
@@ -46,7 +42,7 @@ public class RepayMoneyUseCase {
         }
         actor.setFinancialStatement(financialStatementUpdate(actor.getFinancialStatement(), liabilityTypeString, repayMoneyAmount));
         log.debug("Finish RepayMoneyUseCase");
-        return actor;
+        return actorRepository.save(actor);
     }
 
     private FinancialStatement financialStatementUpdate(FinancialStatement financialStatement, String liabilityTypeString, BigDecimal moneyAmount) {
@@ -77,6 +73,6 @@ public class RepayMoneyUseCase {
     }
 
     private boolean isRepayMoneyAmountMoreThanCash(Actor actor, BigDecimal repayMoneyAmount) {
-        return repayMoneyAmount.compareTo(actor.getFinancialStatement().getCash()) == 1;
+        return repayMoneyAmount.compareTo(actor.getFinancialStatement().getCash()) > 0;
     }
 }
