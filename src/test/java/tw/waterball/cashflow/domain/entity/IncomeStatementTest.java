@@ -10,7 +10,7 @@ public class IncomeStatementTest {
     void testTotalIncomeAmount()
     {
         IncomeStatement incomeStatement = new IncomeStatement(FinancialItem.builder(String.valueOf(System.currentTimeMillis()),
-                                                                                    FinancialItemName.SALARY_TEACHER_K_12,
+                                                                                    FinancialItemName.SALARY,
                                                                                     BigDecimal.valueOf(300)).build());
         incomeStatement.addInterest(FinancialItem.builder(String.valueOf(System.currentTimeMillis()),
                                                           FinancialItemName.CD,
