@@ -17,7 +17,13 @@ public class Actor {
 
     private final Career career;
 
+    /**
+     * @deprecated
+     * @see #getFinancialStatementV2()
+     */
+    @Deprecated
     private FinancialStatement financialStatement;
+    private FinancialStatementV2 financialStatementV2;
     @Setter
     private int position = 0;
 
@@ -46,6 +52,7 @@ public class Actor {
         this.actorName = actorName;
         this.career = career;
         this.financialStatement = FinancialStatementUtils.initialize(this.career);
+        this.financialStatementV2 = FinancialStatementUtils.initializeV2(this.career);
     }
 
     public boolean isInOuterCircle() {
