@@ -1,5 +1,7 @@
 package tw.waterball.cashflow.domain.entity.liability;
 
 public enum LiabilityType {
-    HomeMortgage, CarLoans, CreditCard, CashLoan
+    HOME_MORTGAGE,
+    CAR_LOANS,
+    CREDIT_CARD
 }

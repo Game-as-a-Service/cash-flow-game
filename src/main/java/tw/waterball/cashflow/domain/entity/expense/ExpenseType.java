@@ -4,17 +4,18 @@ public enum ExpenseType {
     /**
      * 利息
      */
-    Interest,
+    INTEREST,
     /**
      * 小孩支出
      */
-    EducationExpense, Tax,
+    EDUCATION_EXPENSE,
+    TAX,
     /**
      * 房貸
      */
-    HomeMortgagePayment,
+    HOME_MORTGAGE_PAYMENT,
     /**
      * 車貸
      */
-    CarLoanPayment, CreditCardPayment, CashLoanPayment, OtherExpenses
+    CAR_LOAN_PAYMENT, CREDIT_CARD_PAYMENT, OTHER_EXPENSES
 }

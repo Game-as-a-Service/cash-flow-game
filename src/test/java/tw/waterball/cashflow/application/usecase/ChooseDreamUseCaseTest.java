@@ -8,7 +8,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import tw.waterball.cashflow.application.usecase.ChooseDreamUseCase;
 import tw.waterball.cashflow.domain.entity.Actor;
 import tw.waterball.cashflow.domain.entity.Career;
 import tw.waterball.cashflow.application.usecase.ChooseDreamUseCase.Input;
@@ -27,10 +26,10 @@ class ChooseDreamUseCaseTest {
   void givenNotExistActor_whenChooseDream_thenStartIsNotStarted() {
     //Given
     String nickname = "name_1";
-    Actor actor = new Actor(nickname, Career.Engineer);
+    Actor actor = new Actor(nickname, Career.ENGINEER);
     Input input = new Input(actor, 1, "開快艇競速");
 
-    Mockito.when(actorRepository.findGameByNickname(nickname)).thenReturn(Optional.empty());
+    Mockito.when(actorRepository.findGameByActorName(nickname)).thenReturn(Optional.empty());
 
     //When,Then
     Assertions.assertThrows(ActorNotFound.class, () -> chooseDreamUseCase.execute(input));
@@ -41,16 +40,17 @@ class ChooseDreamUseCaseTest {
     //Given
     String nickname = "name_1";
     String dream = "開快艇競速";
-    Actor actor = new Actor(nickname, Career.Engineer);
+    Actor actor = new Actor(nickname, Career.ENGINEER);
     Input input = new Input(actor, 1, dream);
 
-    Mockito.when(actorRepository.findGameByNickname(nickname)).thenReturn( Optional.of(actor));
+    Mockito.when(actorRepository.findGameByActorName(nickname)).thenReturn( Optional.of(actor));
 
     //When
     chooseDreamUseCase.execute(input);
 
     //Then
     Assertions.assertEquals(dream, actor.getDream());
+    Mockito.verify(actorRepository, Mockito.times(1)).save(actor);
   }
 
 }

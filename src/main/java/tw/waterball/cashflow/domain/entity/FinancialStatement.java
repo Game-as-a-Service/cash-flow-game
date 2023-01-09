@@ -20,7 +20,7 @@ import java.util.Optional;
 @ToString
 public class FinancialStatement {
     private BigDecimal passiveIncome;
-    private BigDecimal cash;
+    private BigDecimal cash = BigDecimal.ZERO;
 
     private Map<IncomeType, Income> incomeMap = new HashMap<>();
     private Map<ExpenseType, Expense> expenseMap = new HashMap<>();
@@ -28,26 +28,26 @@ public class FinancialStatement {
     private Map<LiabilityType, Liability> liabilityMap = new HashMap<>();
 
     public BigDecimal getTotalIncomeAmount() {
-        return incomeMap.values().stream().map(income -> income.getAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
+        return incomeMap.values().stream().map(Income::getAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public BigDecimal getTotalExpenseAmount() {
-        return expenseMap.values().stream().map(expense -> expense.getAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
+        return expenseMap.values().stream().map(Expense::getAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public BigDecimal getTotalAssetAmount() {
-        return assetMap.values().stream().map(asset -> asset.getAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
+        return assetMap.values().stream().map(Asset::getAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public BigDecimal getTotalLiabilityAmount() {
-        return liabilityMap.values().stream().map(liability -> liability.getAmount()).reduce(BigDecimal.ZERO, BigDecimal::add);
+        return liabilityMap.values().stream().map(Liability::getAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public BigDecimal getPayday() {
         return getTotalIncomeAmount().subtract(getTotalExpenseAmount());
     }
 
-    public void addIncome(Income income) {
+    public void addIncome(final Income income) {
         if (!incomeMap.containsKey(income.getType())) {
             incomeMap.put(income.getType(), income);
         }
@@ -59,39 +59,65 @@ public class FinancialStatement {
      * @param incomeType 收入種類
      * @return 指定的收入物件
      */
-    public Optional<Income> getIncome(IncomeType incomeType) {
+    public Optional<Income> getIncome(final IncomeType incomeType) {
         return Optional.ofNullable(this.incomeMap.get(incomeType));
     }
 
-    /**
-     * 取得指定種類的支出
-     *
-     * @param expenseType 支出種類
-     * @return 指定的支出物件
-     */
-    public Optional<Expense> getExpense(ExpenseType expenseType) {
-        return Optional.ofNullable(this.expenseMap.get(expenseType));
-    }
-
-    /**
-     * 取得指定種類的負債
-     *
-     * @param liabilityType 負債種類
-     * @return 指定的負債物件
-     */
-    public Optional<Liability> getLiability(LiabilityType liabilityType) {
-        return Optional.ofNullable(this.liabilityMap.get(liabilityType));
-    }
-
-    public void addExpense(Expense expense) {
+    public void addExpense(final Expense expense) {
         if (!expenseMap.containsKey(expense.getType())) {
             expenseMap.put(expense.getType(), expense);
         }
     }
 
-    public void addLiability(Liability liability) {
+    public void addLiability(final Liability liability) {
         if (!liabilityMap.containsKey(liability.getType())) {
             liabilityMap.put(liability.getType(), liability);
         }
+    }
+
+    /**
+     * @return 目前的儲蓄金額
+     */
+    public BigDecimal getCash() {
+        return this.cash;
+    }
+
+    /**
+     * 增加儲蓄金額
+     *
+     * @param amount 增加的數值，eg: 5000
+     */
+    public void addCash(BigDecimal amount) {
+        this.cash = this.cash.add(amount);
+    }
+
+    /**
+     * 減少儲蓄金額
+     *
+     * @param amount 要減少的金額，eg: 100
+     */
+    public void subtractCash(BigDecimal amount) {
+        this.cash = this.cash.subtract(amount);
+    }
+
+    public BigDecimal getPassiveIncome() {
+        return passiveIncome;
+    }
+
+    public void setPassiveIncome(final BigDecimal passiveIncome) {
+        this.passiveIncome = passiveIncome;
+    }
+
+    public Map<ExpenseType, Expense> getExpenseMap() {
+        return expenseMap;
+    }
+
+    /**
+     * @see #addExpense(Expense)
+     * @deprecated 不建議直接設定內部的 map
+     */
+    @Deprecated
+    public void setExpenseMap(final Map<ExpenseType, Expense> expenseMap) {
+        this.expenseMap = expenseMap;
     }
 }

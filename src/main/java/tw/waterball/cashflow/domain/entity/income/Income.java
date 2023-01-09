@@ -14,8 +14,7 @@ public class Income {
     private IncomeType type;
     private BigDecimal amount;
 
-    public static IncomeBuilder builder(IncomeType type)
-    {
+    public static IncomeBuilder builder(IncomeType type) {
         return new IncomeBuilder().type(type);
     }
 }
