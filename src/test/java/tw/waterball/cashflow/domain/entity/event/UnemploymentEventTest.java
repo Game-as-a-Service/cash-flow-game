@@ -37,7 +37,7 @@ class UnemploymentEventTest {
         // When
         unemploymentEvent.execute(actor);
 
-        // Then 破產
+        // Then
         BigDecimal finalCash = originalCash.subtract(financialStatement.getExpense().getTotalExpenseAmount());
         Assertions.assertEquals(finalCash, financialStatement.getCash());
         Assertions.assertEquals(1, actor.getDiceCount());
