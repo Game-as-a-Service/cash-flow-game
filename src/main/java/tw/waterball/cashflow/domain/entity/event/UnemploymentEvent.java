@@ -2,7 +2,7 @@ package tw.waterball.cashflow.domain.entity.event;
 
 import tw.waterball.cashflow.domain.entity.Actor;
 import tw.waterball.cashflow.domain.entity.ActorState;
-import tw.waterball.cashflow.domain.entity.FinancialStatement;
+import tw.waterball.cashflow.domain.entity.FinancialStatementV2;
 import tw.waterball.cashflow.domain.entity.exception.InsufficientCashException;
 
 import java.math.BigDecimal;
@@ -16,8 +16,8 @@ public class UnemploymentEvent implements Event {
 
     @Override
     public void execute(Actor actor) throws InsufficientCashException {
-        FinancialStatement financialStmt = actor.getFinancialStatement();
-        final BigDecimal payment = financialStmt.getTotalExpenseAmount();
+        FinancialStatementV2 financialStmt = actor.getFinancialStatementV2();
+        final BigDecimal payment = financialStmt.getExpense().getTotalExpenseAmount();
 
         if (financialStmt.getCash().compareTo(payment) < 0) {
             throw new InsufficientCashException();
