@@ -16,8 +16,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * @deprecated
+ *
+ * @see FinancialStatementV2
+ */
 @NoArgsConstructor
 @ToString
+@Deprecated
 public class FinancialStatement {
     private BigDecimal passiveIncome;
     private BigDecimal cash = BigDecimal.ZERO;

@@ -6,7 +6,14 @@ import lombok.ToString;
 
 import java.math.BigDecimal;
 
-//@NoArgsConstructor(access = AccessLevel.PRIVATE)
+/**
+ * @deprecated
+ *
+ * @see tw.waterball.cashflow.domain.entity.IncomeStatement
+ * @see tw.waterball.cashflow.domain.entity.FinancialItem
+ * @see tw.waterball.cashflow.domain.entity.FinancialItemName
+ * @see tw.waterball.cashflow.domain.entity.FinancialStatementV2
+ */
 @Getter
 @Builder
 @ToString
