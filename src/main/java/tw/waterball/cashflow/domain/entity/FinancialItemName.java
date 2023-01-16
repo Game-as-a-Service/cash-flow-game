@@ -25,6 +25,7 @@ public enum FinancialItemName {
     RETAIL,
     BOAT,
     LOAN,
+    LOAN_PAYMENT,
     /**
      * 股票 - ON2U
      */

@@ -3,10 +3,8 @@ package tw.waterball.cashflow.application.usecase;
 import org.junit.jupiter.api.Test;
 import tw.waterball.cashflow.domain.entity.Actor;
 import tw.waterball.cashflow.domain.entity.Career;
-import tw.waterball.cashflow.domain.entity.expense.Expense;
-import tw.waterball.cashflow.domain.entity.expense.ExpenseType;
-import tw.waterball.cashflow.domain.entity.liability.Liability;
-import tw.waterball.cashflow.domain.entity.liability.LiabilityType;
+import tw.waterball.cashflow.domain.entity.FinancialItem;
+import tw.waterball.cashflow.domain.entity.FinancialItemName;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -19,17 +17,19 @@ public class BorrowMoneyUseCaseTest {
     void giveActor_whenBorrowMoney_thenSuccess() {
         BorrowMoneyUseCase borrowMoneyUseCase = new BorrowMoneyUseCase();
         // Given
-        Actor actor = new Actor("A", Career.Engineer);
+        Actor actor = new Actor("A", Career.ENGINEER);
 
         // When
         actor = borrowMoneyUseCase.borrowMoney(actor, BigDecimal.valueOf(9000));
 
         // Then
-        Optional<Liability> liabilityOptional = actor.getFinancialStatement().getLiability(LiabilityType.CashLoan);
+        Optional<FinancialItem> liabilityOptional = actor.getFinancialStatementV2().getLiability().getAllBasicLiabilities().stream()
+                                                         .filter(liability -> liability.getName() == FinancialItemName.LOAN).findFirst();
         assertThat(liabilityOptional).isPresent();
         assertThat(liabilityOptional.get().getAmount()).isEqualTo(BigDecimal.valueOf(9000));
 
-        Optional<Expense> expenseOptional = actor.getFinancialStatement().getExpense(ExpenseType.CashLoanPayment);
+
+        Optional<FinancialItem> expenseOptional = actor.getFinancialStatementV2().getExpense().getExpense(liabilityOptional.get().getId());
         assertThat(expenseOptional).isPresent();
         assertThat(expenseOptional.get().getAmount()).isEqualTo(BigDecimal.valueOf(900));
     }
