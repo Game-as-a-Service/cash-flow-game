@@ -137,4 +137,8 @@ public class AssetStatement {
     public String toString() {
         return "AssetStatement{" + "stocks=" + stockMap.values() + ", funds=" + fundMap.values() + ", CDs=" + cdMap.values() + ", realEstates=" + realEstateMap.values() + ", businesses=" + businessMap.values() + '}';
     }
+
+    public boolean realEstateExists(FinancialItemName realEstateItem) {
+        return Objects.nonNull(realEstateItem) && this.realEstateMap.values().parallelStream().anyMatch(item -> item.getName().equals(realEstateItem));
+    }
 }

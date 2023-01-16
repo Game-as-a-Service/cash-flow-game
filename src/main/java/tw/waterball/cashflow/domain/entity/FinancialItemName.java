@@ -8,9 +8,14 @@ public enum FinancialItemName {
      */
     CD,
     /**
-     * 房地產 - 2/1 CONDO
+     * 房地產 - 2 防 + 1 衛浴 CONDO
      */
-    REAL_ESTATE_CONDO_2_BEDS_1_BATH,
+    REAL_ESTATE_CONDO_2_BR_1_BA,
+
+    /**
+     * 房地產 - 3 防 + 2 衛浴 house
+     */
+    REAL_ESTATE_HOUSE_3_BR_2_BA,
     /**
      * 稅
      */
