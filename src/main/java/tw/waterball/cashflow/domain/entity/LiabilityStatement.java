@@ -34,6 +34,10 @@ public class LiabilityStatement {
         this.realEstateMap.put(realEstateItem.getId(), realEstateItem);
     }
 
+    public Optional<FinancialItem> getRealEstate(String id) {
+        return Optional.ofNullable(this.realEstateMap.get(id));
+    }
+
     /**
      * 增加商業負債項目
      *
@@ -41,6 +45,10 @@ public class LiabilityStatement {
      */
     public void addBusiness(FinancialItem businessItem) {
         this.businessMap.put(businessItem.getId(), businessItem);
+    }
+
+    public Optional<FinancialItem> getBusiness(String id) {
+        return Optional.ofNullable(this.businessMap.get(id));
     }
 
     /**
@@ -69,7 +77,7 @@ public class LiabilityStatement {
      *
      * @param id item ID
      */
-    public void removeAsset(String id) {
+    public void removeLiability(String id) {
         if (Objects.nonNull(this.basicLiabilityMap.remove(id))) {
             return;
         }

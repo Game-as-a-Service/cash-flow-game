@@ -64,6 +64,10 @@ public class AssetStatement {
         this.realEstateMap.put(realEstateItem.getId(), realEstateItem);
     }
 
+    public Optional<FinancialItem> getRealEstate(String id) {
+        return Optional.ofNullable(this.realEstateMap.get(id));
+    }
+
     /**
      * 增加商業資產項目
      *
@@ -71,6 +75,10 @@ public class AssetStatement {
      */
     public void addBusiness(FinancialItem businessItem) {
         this.businessMap.put(businessItem.getId(), businessItem);
+    }
+
+    public Optional<FinancialItem> getBusiness(String id) {
+        return Optional.ofNullable(this.businessMap.get(id));
     }
 
     /**
