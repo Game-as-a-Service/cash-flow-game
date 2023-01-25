@@ -43,8 +43,8 @@ public class FinancialItem {
      * @throws IllegalArgumentException if amount < 1
      */
     public void setAmount(BigDecimal amount) {
-        if(Objects.isNull(amount) || BigDecimal.ONE.compareTo(amount) == 1) {
-            throw new IllegalArgumentException("Amount must > 0");
+        if(Objects.isNull(amount)) {
+            throw new IllegalArgumentException("Amount can't be null.");
         }
         this.amount = amount;
     }
