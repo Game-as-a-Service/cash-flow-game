@@ -39,12 +39,12 @@ public class FinancialItem {
     }
 
     /**
-     * @param amount 大於 0 的單價金額
-     * @throws IllegalArgumentException if amount < 1
+     * @param amount 單價金額 不得為 0
+     * @throws IllegalArgumentException if amount = 0
      */
     public void setAmount(BigDecimal amount) {
-        if(Objects.isNull(amount) || BigDecimal.ONE.compareTo(amount) == 1) {
-            throw new IllegalArgumentException("Amount must > 0");
+        if(Objects.isNull(amount) || BigDecimal.ONE.compareTo(amount) == 0) {
+            throw new IllegalArgumentException("Amount must != 0");
         }
         this.amount = amount;
     }

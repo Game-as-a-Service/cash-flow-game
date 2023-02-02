@@ -1,11 +1,19 @@
 package tw.waterball.cashflow.domain.entity.event;
 
 import lombok.Getter;
+import tw.waterball.cashflow.domain.entity.FinancialItemName;
 
 import java.math.BigDecimal;
 
+
 public enum BigOpportunityEventType {
-    BEDROOMS3_LIVING2_FOR_SALE(125000, 105000, 20000, -100);
+    BEDROOMS3_LIVING2_FOR_SALE(FinancialItemName.BEDROOMS3_LIVING2_FOR_SALE, 125000, 105000, 20000, -100);
+
+    /**
+     * 名稱
+     */
+    @Getter
+    private final FinancialItemName name;
 
     /**
      * 成本
@@ -28,7 +36,8 @@ public enum BigOpportunityEventType {
     @Getter
     private final BigDecimal monthlyCashFlow;
 
-    BigOpportunityEventType(long cost, long mortgage, long downPayment, long monthlyCashFlow) {
+    BigOpportunityEventType(FinancialItemName name, long cost, long mortgage, long downPayment, long monthlyCashFlow) {
+        this.name = name;
         this.cost = BigDecimal.valueOf(cost);
         this.mortgage = BigDecimal.valueOf(mortgage);
         this.downPayment = BigDecimal.valueOf(downPayment);

@@ -1,5 +1,6 @@
 package tw.waterball.cashflow.domain.entity;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
@@ -131,6 +132,17 @@ public class AssetStatement {
         }
 
         this.businessMap.remove(id);
+    }
+
+    /**
+     * @return 總資產
+     */
+    public BigDecimal getTotalAssetAmount() {
+        return stockMap.values().stream().map(FinancialItem::getTotalAmount).reduce(BigDecimal.ZERO, BigDecimal::add)
+                .add(fundMap.values().stream().map(FinancialItem::getTotalAmount).reduce(BigDecimal.ZERO, BigDecimal::add))
+                .add(cdMap.values().stream().map(FinancialItem::getTotalAmount).reduce(BigDecimal.ZERO, BigDecimal::add))
+                .add(realEstateMap.values().stream().map(FinancialItem::getTotalAmount).reduce(BigDecimal.ZERO, BigDecimal::add))
+                .add(businessMap.values().stream().map(FinancialItem::getTotalAmount).reduce(BigDecimal.ZERO, BigDecimal::add));
     }
 
     @Override

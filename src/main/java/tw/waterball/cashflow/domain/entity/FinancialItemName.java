@@ -33,5 +33,6 @@ public enum FinancialItemName {
      * 股票 - OK4U
      */
     STOCK_OK4U,
-    OTHER
+    OTHER,
+    BEDROOMS3_LIVING2_FOR_SALE
 }
