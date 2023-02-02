@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
 import tw.waterball.cashflow.domain.entity.Actor;
-import tw.waterball.cashflow.domain.entity.FinancialStatement;
+import tw.waterball.cashflow.domain.entity.FinancialStatementV2;
 import tw.waterball.cashflow.domain.entity.exception.InsufficientCashException;
 
 import java.math.BigDecimal;
@@ -37,10 +37,9 @@ public class ExtraPaymentEvent implements Event {
     }
 
     @Override
-    public void execute(Actor actor) throws InsufficientCashException
-    {
-        FinancialStatement financialStatement = actor.getFinancialStatement();
-        if (financialStatement.getCash().compareTo(getPayment()) == -1) {
+    public void execute(Actor actor) throws InsufficientCashException {
+        FinancialStatementV2 financialStatement = actor.getFinancialStatementV2();
+        if (financialStatement.getCash().compareTo(getPayment()) < 0) {
             throw new InsufficientCashException();
         } else {
             financialStatement.subtractCash(getPayment());

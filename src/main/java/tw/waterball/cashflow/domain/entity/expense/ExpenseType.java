@@ -1,23 +1,29 @@
 package tw.waterball.cashflow.domain.entity.expense;
 
+/**
+ * @deprecated
+ *
+ * @see tw.waterball.cashflow.domain.entity.ExpenseStatement
+ * @see tw.waterball.cashflow.domain.entity.FinancialItem
+ * @see tw.waterball.cashflow.domain.entity.FinancialItemName
+ * @see tw.waterball.cashflow.domain.entity.FinancialStatementV2
+ */
 public enum ExpenseType {
     /**
      * 利息
      */
-    Interest,
+    INTEREST,
     /**
      * 小孩支出
      */
-    EducationExpense,
-    Tax,
+    EDUCATION_EXPENSE,
+    TAX,
     /**
      * 房貸
      */
-    HomeMortgagePayment,
+    HOME_MORTGAGE_PAYMENT,
     /**
      * 車貸
      */
-    CarLoanPayment,
-    CreditCardPayment,
-    OtherExpenses
+    CAR_LOAN_PAYMENT, CREDIT_CARD_PAYMENT, OTHER_EXPENSES
 }

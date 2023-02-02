@@ -16,8 +16,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * @deprecated
+ *
+ * @see FinancialStatementV2
+ */
 @NoArgsConstructor
 @ToString
+@Deprecated
 public class FinancialStatement {
     private BigDecimal passiveIncome;
     private BigDecimal cash = BigDecimal.ZERO;
@@ -112,6 +118,11 @@ public class FinancialStatement {
         return expenseMap;
     }
 
+    /**
+     * @see #addExpense(Expense)
+     * @deprecated 不建議直接設定內部的 map
+     */
+    @Deprecated
     public void setExpenseMap(final Map<ExpenseType, Expense> expenseMap) {
         this.expenseMap = expenseMap;
     }
