@@ -43,7 +43,7 @@ public class FinancialItem {
      * @throws IllegalArgumentException if amount = 0
      */
     public void setAmount(BigDecimal amount) {
-        if(Objects.isNull(amount) || BigDecimal.ONE.compareTo(amount) == 0) {
+        if(Objects.isNull(amount) || BigDecimal.ZERO.compareTo(amount) == 0) {
             throw new IllegalArgumentException("Amount must != 0");
         }
         this.amount = amount;

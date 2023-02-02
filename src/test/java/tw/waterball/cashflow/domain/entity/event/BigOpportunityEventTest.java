@@ -27,7 +27,7 @@ class BigOpportunityEventTest {
         bigOpportunityEvent.execute(actor);
 
         // Then
-        // 現今減少
+        // 現金減少
         Assertions.assertEquals(BigOpportunityEventType.BEDROOMS3_LIVING2_FOR_SALE.getDownPayment(), originalCash.subtract(financialStatement.getCash()));
         // 現金流增加
         Assertions.assertEquals(BigOpportunityEventType.BEDROOMS3_LIVING2_FOR_SALE.getMonthlyCashFlow(), financialStatement.getIncome().getTotalIncomeAmount().subtract(originalIncome));
