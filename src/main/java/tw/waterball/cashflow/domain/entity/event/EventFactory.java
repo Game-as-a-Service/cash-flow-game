@@ -15,29 +15,32 @@ import java.util.Random;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class EventFactory {
     private static Map<ExtraPaymentEventType, ExtraPaymentEvent> extraPaymentEventMap = new HashMap<>();
+    private static Map<BigOpportunityEventType, BigOpportunityEvent> bigOpportunityEventMap = new HashMap<>();
     private static Random random = new Random();
 
-    static
-    {
-        for(ExtraPaymentEventType extraPaymentEventType : ExtraPaymentEventType.values())
-        {
+    static {
+        for (ExtraPaymentEventType extraPaymentEventType : ExtraPaymentEventType.values()) {
             extraPaymentEventMap.put(extraPaymentEventType, new ExtraPaymentEvent(extraPaymentEventType, extraPaymentEventType.getPayment()));
+        }
+        for (BigOpportunityEventType bigOpportunityEventType : BigOpportunityEventType.values()) {
+            bigOpportunityEventMap.put(bigOpportunityEventType, new BigOpportunityEvent(bigOpportunityEventType));
         }
     }
 
-    public static Event getEvent(EventType eventType)
-    {
+    public static Event getEvent(EventType eventType) {
         // TODO 待實作
         throw new UnsupportedOperationException();
     }
 
-    public static ExtraPaymentEvent getExtraPaymentEvent(ExtraPaymentEventType extraPaymentEventType)
-    {
+    public static ExtraPaymentEvent getExtraPaymentEvent(ExtraPaymentEventType extraPaymentEventType) {
         return extraPaymentEventMap.get(extraPaymentEventType);
     }
 
-    public static ExtraPaymentEvent randomExtraPayment()
-    {
+    public static ExtraPaymentEvent randomExtraPayment() {
         return extraPaymentEventMap.get(ExtraPaymentEventType.values()[random.nextInt(extraPaymentEventMap.size())]);
+    }
+
+    public static BigOpportunityEvent getBigOpportunityEvent(BigOpportunityEventType bigOpportunityEventType) {
+        return bigOpportunityEventMap.get(bigOpportunityEventType);
     }
 }

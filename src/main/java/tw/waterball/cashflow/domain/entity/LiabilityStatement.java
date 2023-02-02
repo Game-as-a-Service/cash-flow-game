@@ -1,5 +1,6 @@
 package tw.waterball.cashflow.domain.entity;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
@@ -79,6 +80,18 @@ public class LiabilityStatement {
         }
 
         this.businessMap.remove(id);
+    }
+
+    /**
+     * @return 總負債
+     */
+    public BigDecimal getTotalLiabilityAmount() {
+        return basicLiabilityMap.values()
+                                .stream()
+                                .map(FinancialItem::getTotalAmount)
+                                .reduce(BigDecimal.ZERO, BigDecimal::add)
+                                .add(realEstateMap.values().stream().map(FinancialItem::getTotalAmount).reduce(BigDecimal.ZERO, BigDecimal::add))
+                                .add(businessMap.values().stream().map(FinancialItem::getTotalAmount).reduce(BigDecimal.ZERO, BigDecimal::add));
     }
 
     @Override
