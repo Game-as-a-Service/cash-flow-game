@@ -11,6 +11,7 @@ import tw.waterball.cashflow.domain.entity.exception.InsufficientCashException;
 import java.math.BigDecimal;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static tw.waterball.cashflow.domain.entity.event.MarketEventType.INFLATION_HIT;
 
 class MarketEventTest {
     @Test
@@ -22,7 +23,7 @@ class MarketEventTest {
         BigDecimal oldCashAmount = financialStmt.getCash();
 
         // When
-        MarketEvent marketEvent = new MarketEvent(MarketEventType.INFLATION_HIT, FinancialItemName.REAL_ESTATE_HOUSE_3_BR_2_BA, BigDecimal.valueOf(65000));
+        MarketEvent marketEvent = new MarketEvent(INFLATION_HIT, FinancialItemName.REAL_ESTATE_HOUSE_3_BR_2_BA, INFLATION_HIT.getAmount());
         marketEvent.execute(engineer);
 
         // Then
@@ -44,7 +45,7 @@ class MarketEventTest {
         BigDecimal oldCashAmount = financialStmt.getCash();
 
         // When
-        MarketEvent marketEvent = new MarketEvent(MarketEventType.INFLATION_HIT, FinancialItemName.REAL_ESTATE_HOUSE_3_BR_2_BA, BigDecimal.valueOf(65000));
+        MarketEvent marketEvent = new MarketEvent(INFLATION_HIT, FinancialItemName.REAL_ESTATE_HOUSE_3_BR_2_BA, INFLATION_HIT.getAmount());
         marketEvent.setRealEstateItemIDToSell(itemID);
         marketEvent.execute(engineer);
 
