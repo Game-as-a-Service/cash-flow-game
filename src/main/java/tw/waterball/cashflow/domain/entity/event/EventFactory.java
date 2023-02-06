@@ -2,8 +2,11 @@ package tw.waterball.cashflow.domain.entity.event;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import tw.waterball.cashflow.domain.entity.FinancialItemName;
 
+import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
@@ -16,12 +19,14 @@ import java.util.Random;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class EventFactory {
     private static Map<ExtraPaymentEventType, ExtraPaymentEvent> extraPaymentEventMap = new EnumMap<>(ExtraPaymentEventType.class);
+    private static Map<MarketEventType, MarketEvent> marketEventMap = new EnumMap<>(MarketEventType.class);
+    private static List<FinancialItemName> realEstateList = Arrays.asList(FinancialItemName.REAL_ESTATE_CONDO_2_BR_1_BA,
+                                                                          FinancialItemName.REAL_ESTATE_HOUSE_3_BR_2_BA);
     private static Random random = new Random();
 
     static
     {
-        for(ExtraPaymentEventType extraPaymentEventType : ExtraPaymentEventType.values())
-        {
+        for(ExtraPaymentEventType extraPaymentEventType : ExtraPaymentEventType.values()) {
             extraPaymentEventMap.put(extraPaymentEventType, new ExtraPaymentEvent(extraPaymentEventType, extraPaymentEventType.getAmount()));
         }
     }
@@ -38,13 +43,17 @@ public class EventFactory {
         throw new UnsupportedOperationException();
     }
 
-    public static ExtraPaymentEvent getExtraPaymentEvent(ExtraPaymentEventType extraPaymentEventType)
-    {
+    public static ExtraPaymentEvent getExtraPaymentEvent(ExtraPaymentEventType extraPaymentEventType) {
         return extraPaymentEventMap.get(extraPaymentEventType);
     }
 
-    public static ExtraPaymentEvent randomExtraPayment()
-    {
+    public static ExtraPaymentEvent randomExtraPayment() {
         return extraPaymentEventMap.get(ExtraPaymentEventType.values()[random.nextInt(extraPaymentEventMap.size())]);
+    }
+
+    public static MarketEvent randomMarketEvent() {
+        MarketEventType randomMarketEventType = MarketEventType.values()[random.nextInt(MarketEventType.values().length)];
+        FinancialItemName randomRealEstate = realEstateList.get(random.nextInt(realEstateList.size()));
+        return new MarketEvent(randomMarketEventType, randomRealEstate, randomMarketEventType.getAmount());
     }
 }
