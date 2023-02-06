@@ -23,6 +23,6 @@ class ExtraPaymentTelevisionEventTest {
 
         // Then 儲蓄少 5000
         BigDecimal paidAmount = currentCash.subtract(actor.getFinancialStatementV2().getCash());
-        assertThat(paidAmount).isEqualByComparingTo(ExtraPaymentEventType.TELEVISION.getPayment());
+        assertThat(paidAmount).isEqualByComparingTo(ExtraPaymentEventType.TELEVISION.getAmount());
     }
 }
