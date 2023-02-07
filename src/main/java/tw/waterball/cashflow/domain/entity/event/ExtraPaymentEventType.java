@@ -31,8 +31,8 @@ public enum ExtraPaymentEventType {
 
     private final BigDecimal amount;
 
-    ExtraPaymentEventType(long payment) {
-        this.amount = BigDecimal.valueOf(payment);
+    ExtraPaymentEventType(long amount) {
+        this.amount = BigDecimal.valueOf(amount);
     }
 
     /**

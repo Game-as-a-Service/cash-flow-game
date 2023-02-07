@@ -19,7 +19,6 @@ import java.util.Random;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class EventFactory {
     private static Map<ExtraPaymentEventType, ExtraPaymentEvent> extraPaymentEventMap = new EnumMap<>(ExtraPaymentEventType.class);
-    private static Map<MarketEventType, MarketEvent> marketEventMap = new EnumMap<>(MarketEventType.class);
     private static List<FinancialItemName> realEstateList = Arrays.asList(FinancialItemName.REAL_ESTATE_CONDO_2_BR_1_BA,
                                                                           FinancialItemName.REAL_ESTATE_HOUSE_3_BR_2_BA);
     private static Random random = new Random();
