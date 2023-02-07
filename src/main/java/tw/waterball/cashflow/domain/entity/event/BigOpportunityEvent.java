@@ -26,8 +26,8 @@ public class BigOpportunityEvent implements Event {
         financialStatement.subtractCash(bigOpportunityEventType.getDownPayment());
         String itemId = bigOpportunityEventType.name() + "-" + System.currentTimeMillis();
 
-        financialStatement.getIncome().addRealEstate(FinancialItem.builder(itemId, bigOpportunityEventType.getName(), bigOpportunityEventType.getMonthlyCashFlow()).build());
+        financialStatement.getIncome().addRealEstate(FinancialItem.builder(itemId, bigOpportunityEventType.getName(), bigOpportunityEventType.getCashFlow()).build());
         financialStatement.getAsset().addRealEstate(FinancialItem.builder(itemId, bigOpportunityEventType.getName(), bigOpportunityEventType.getCost()).build());
-        financialStatement.getLiability().addRealEstate(FinancialItem.builder(itemId, bigOpportunityEventType.getName(), bigOpportunityEventType.getMortgage()).build());
+        financialStatement.getLiability().addRealEstate(FinancialItem.builder(itemId, bigOpportunityEventType.getName(), bigOpportunityEventType.getCost().subtract(bigOpportunityEventType.getDownPayment())).build());
     }
 }

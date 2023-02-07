@@ -16,6 +16,7 @@ import java.util.Random;
 public class EventFactory {
     private static Map<ExtraPaymentEventType, ExtraPaymentEvent> extraPaymentEventMap = new HashMap<>();
     private static Map<BigOpportunityEventType, BigOpportunityEvent> bigOpportunityEventMap = new HashMap<>();
+    private static Map<SmallOpportunityEventType, SmallOpportunityEvent> smallOpportunityEventMap = new HashMap<>();
     private static Random random = new Random();
 
     static {
@@ -24,6 +25,10 @@ public class EventFactory {
         }
         for (BigOpportunityEventType bigOpportunityEventType : BigOpportunityEventType.values()) {
             bigOpportunityEventMap.put(bigOpportunityEventType, new BigOpportunityEvent(bigOpportunityEventType));
+        }
+
+        for (SmallOpportunityEventType smallOpportunityEventType : SmallOpportunityEventType.values()) {
+            smallOpportunityEventMap.put(smallOpportunityEventType, new SmallOpportunityEvent(smallOpportunityEventType));
         }
     }
 
@@ -42,5 +47,9 @@ public class EventFactory {
 
     public static BigOpportunityEvent getBigOpportunityEvent(BigOpportunityEventType bigOpportunityEventType) {
         return bigOpportunityEventMap.get(bigOpportunityEventType);
+    }
+
+    public static Event getSmallOpportunityEvent(SmallOpportunityEventType smallOpportunityEventType) {
+        return smallOpportunityEventMap.get(smallOpportunityEventType);
     }
 }
