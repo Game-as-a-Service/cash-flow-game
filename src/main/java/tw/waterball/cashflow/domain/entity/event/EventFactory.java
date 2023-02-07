@@ -6,7 +6,6 @@ import tw.waterball.cashflow.domain.entity.FinancialItemName;
 
 import java.util.Arrays;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -21,7 +20,7 @@ import java.util.Random;
 public class EventFactory {
     private static Map<ExtraPaymentEventType, ExtraPaymentEvent> extraPaymentEventMap = new EnumMap<>(ExtraPaymentEventType.class);
     private static Map<BigOpportunityEventType, BigOpportunityEvent> bigOpportunityEventMap = new EnumMap<>(BigOpportunityEventType.class);
-    private static Map<SmallOpportunityEventType, SmallOpportunityEvent> smallOpportunityEventMap = new HashMap<>();
+    private static Map<SmallOpportunityEventType, SmallOpportunityEvent> smallOpportunityEventMap = new EnumMap<>(SmallOpportunityEventType.class);
     private static List<FinancialItemName> realEstateList = Arrays.asList(FinancialItemName.REAL_ESTATE_CONDO_2_BR_1_BA, FinancialItemName.REAL_ESTATE_HOUSE_3_BR_2_BA);
     private static Random random = new Random();
 
