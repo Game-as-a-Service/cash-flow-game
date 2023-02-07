@@ -29,16 +29,16 @@ public enum ExtraPaymentEventType {
      */
     PHONE(10000);
 
-    private final BigDecimal payment;
+    private final BigDecimal amount;
 
-    ExtraPaymentEventType(long payment) {
-        this.payment = BigDecimal.valueOf(payment);
+    ExtraPaymentEventType(long amount) {
+        this.amount = BigDecimal.valueOf(amount);
     }
 
     /**
      * @return 回傳該額外支出事件的付款金額
      */
-    public BigDecimal getPayment() {
-        return payment;
+    public BigDecimal getAmount() {
+        return amount;
     }
 }
