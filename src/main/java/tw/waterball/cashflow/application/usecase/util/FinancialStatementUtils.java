@@ -187,6 +187,18 @@ public class FinancialStatementUtils {
                 liabilityCreditCard = BigDecimal.valueOf(2000);
                 cash = BigDecimal.valueOf(520);
                 break;
+            case LAWYER:
+                salary = BigDecimal.valueOf(7500);
+                expenseTax = BigDecimal.valueOf(1830);
+                expenseHomeMortgage = BigDecimal.valueOf(1100);
+                expenseCarLoan = BigDecimal.valueOf(220);
+                expenseCreditCard = BigDecimal.valueOf(180);
+                expenseOther = BigDecimal.valueOf(1650);
+                liabilityHomeMortgage = BigDecimal.valueOf(115000);
+                liabilityCarLoan = BigDecimal.valueOf(11000);
+                liabilityCreditCard = BigDecimal.valueOf(6000);
+                cash = BigDecimal.valueOf(400);
+                break;
             default:
                 throw new UnsupportedOperationException("Not implemented yet.");
         }

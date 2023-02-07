@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.TreeMap;
 
 @RequiredArgsConstructor
@@ -60,6 +61,10 @@ public class IncomeStatement {
         this.realEstateMap.put(realEstateItem.getId(), realEstateItem);
     }
 
+    public Optional<FinancialItem> getRealEstate(String id) {
+        return Optional.ofNullable(this.realEstateMap.get(id));
+    }
+
     /**
      * @return 所有的房地產收入項目
      */
@@ -74,6 +79,10 @@ public class IncomeStatement {
      */
     public void addBusiness(FinancialItem businessItem) {
         this.businessMap.put(businessItem.getId(), businessItem);
+    }
+
+    public Optional<FinancialItem> getBusiness(String id) {
+        return Optional.ofNullable(this.businessMap.get(id));
     }
 
     /**

@@ -2,9 +2,14 @@ package tw.waterball.cashflow.domain.entity.event;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import tw.waterball.cashflow.domain.entity.FinancialItemName;
 
+import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 
 /**
@@ -14,14 +19,15 @@ import java.util.Random;
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class EventFactory {
-    private static Map<ExtraPaymentEventType, ExtraPaymentEvent> extraPaymentEventMap = new HashMap<>();
-    private static Map<BigOpportunityEventType, BigOpportunityEvent> bigOpportunityEventMap = new HashMap<>();
+    private static Map<ExtraPaymentEventType, ExtraPaymentEvent> extraPaymentEventMap = new EnumMap<>(ExtraPaymentEventType.class);
+    private static Map<BigOpportunityEventType, BigOpportunityEvent> bigOpportunityEventMap = new EnumMap<>(BigOpportunityEventType.class);
     private static Map<SmallOpportunityEventType, SmallOpportunityEvent> smallOpportunityEventMap = new HashMap<>();
+    private static List<FinancialItemName> realEstateList = Arrays.asList(FinancialItemName.REAL_ESTATE_CONDO_2_BR_1_BA, FinancialItemName.REAL_ESTATE_HOUSE_3_BR_2_BA);
     private static Random random = new Random();
 
     static {
         for (ExtraPaymentEventType extraPaymentEventType : ExtraPaymentEventType.values()) {
-            extraPaymentEventMap.put(extraPaymentEventType, new ExtraPaymentEvent(extraPaymentEventType, extraPaymentEventType.getPayment()));
+            extraPaymentEventMap.put(extraPaymentEventType, new ExtraPaymentEvent(extraPaymentEventType, extraPaymentEventType.getAmount()));
         }
         for (BigOpportunityEventType bigOpportunityEventType : BigOpportunityEventType.values()) {
             bigOpportunityEventMap.put(bigOpportunityEventType, new BigOpportunityEvent(bigOpportunityEventType));
@@ -32,7 +38,14 @@ public class EventFactory {
         }
     }
 
-    public static Event getEvent(EventType eventType) {
+    /**
+     * 根據 event type 取得 event 物件
+     *
+     * @param eventType    主要 event type
+     * @param subEventType 次要 event type
+     * @return event object
+     */
+    public static Event getEvent(EventType eventType, Optional<Object> subEventType) {
         // TODO 待實作
         throw new UnsupportedOperationException();
     }
@@ -51,5 +64,11 @@ public class EventFactory {
 
     public static Event getSmallOpportunityEvent(SmallOpportunityEventType smallOpportunityEventType) {
         return smallOpportunityEventMap.get(smallOpportunityEventType);
+    }
+
+    public static MarketEvent randomMarketEvent() {
+        MarketEventType randomMarketEventType = MarketEventType.values()[random.nextInt(MarketEventType.values().length)];
+        FinancialItemName randomRealEstate = realEstateList.get(random.nextInt(realEstateList.size()));
+        return new MarketEvent(randomMarketEventType, randomRealEstate, randomMarketEventType.getAmount());
     }
 }

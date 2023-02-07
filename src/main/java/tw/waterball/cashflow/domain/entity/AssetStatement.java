@@ -65,6 +65,10 @@ public class AssetStatement {
         this.realEstateMap.put(realEstateItem.getId(), realEstateItem);
     }
 
+    public Optional<FinancialItem> getRealEstate(String id) {
+        return Optional.ofNullable(this.realEstateMap.get(id));
+    }
+
     /**
      * 增加商業資產項目
      *
@@ -72,6 +76,10 @@ public class AssetStatement {
      */
     public void addBusiness(FinancialItem businessItem) {
         this.businessMap.put(businessItem.getId(), businessItem);
+    }
+
+    public Optional<FinancialItem> getBusiness(String id) {
+        return Optional.ofNullable(this.businessMap.get(id));
     }
 
     /**
@@ -148,5 +156,9 @@ public class AssetStatement {
     @Override
     public String toString() {
         return "AssetStatement{" + "stocks=" + stockMap.values() + ", funds=" + fundMap.values() + ", CDs=" + cdMap.values() + ", realEstates=" + realEstateMap.values() + ", businesses=" + businessMap.values() + '}';
+    }
+
+    public boolean realEstateExists(FinancialItemName realEstateItem) {
+        return Objects.nonNull(realEstateItem) && this.realEstateMap.values().parallelStream().anyMatch(item -> item.getName().equals(realEstateItem));
     }
 }
