@@ -6,7 +6,7 @@ import tw.waterball.cashflow.domain.entity.FinancialItemName;
 import java.math.BigDecimal;
 
 
-public enum SmallOpportunityEventType {
+public enum SmallRealEstateEventType {
     BEDROOMS3_LIVING2_FOR_SALE(FinancialItemName.BEDROOMS3_LIVING2_FOR_SALE, 65000, 5000, 160);
 
     /**
@@ -31,7 +31,7 @@ public enum SmallOpportunityEventType {
     @Getter
     private final BigDecimal cashFlow;
 
-    SmallOpportunityEventType(FinancialItemName name, long cost, long downPayment, long cashFlow) {
+    SmallRealEstateEventType(FinancialItemName name, long cost, long downPayment, long cashFlow) {
         this.name = name;
         this.cost = BigDecimal.valueOf(cost);
         this.downPayment = BigDecimal.valueOf(downPayment);

@@ -20,7 +20,7 @@ import java.util.Random;
 public class EventFactory {
     private static Map<ExtraPaymentEventType, ExtraPaymentEvent> extraPaymentEventMap = new EnumMap<>(ExtraPaymentEventType.class);
     private static Map<BigOpportunityEventType, BigOpportunityEvent> bigOpportunityEventMap = new EnumMap<>(BigOpportunityEventType.class);
-    private static Map<SmallOpportunityEventType, SmallOpportunityEvent> smallOpportunityEventMap = new EnumMap<>(SmallOpportunityEventType.class);
+    private static Map<SmallRealEstateEventType, SmallRealEstateEvent> smallRealEstateEventMap = new EnumMap<>(SmallRealEstateEventType.class);
     private static List<FinancialItemName> realEstateList = Arrays.asList(FinancialItemName.REAL_ESTATE_CONDO_2_BR_1_BA, FinancialItemName.REAL_ESTATE_HOUSE_3_BR_2_BA);
     private static Random random = new Random();
 
@@ -32,8 +32,8 @@ public class EventFactory {
             bigOpportunityEventMap.put(bigOpportunityEventType, new BigOpportunityEvent(bigOpportunityEventType));
         }
 
-        for (SmallOpportunityEventType smallOpportunityEventType : SmallOpportunityEventType.values()) {
-            smallOpportunityEventMap.put(smallOpportunityEventType, new SmallOpportunityEvent(smallOpportunityEventType));
+        for (SmallRealEstateEventType smallRealEstateEventType : SmallRealEstateEventType.values()) {
+            smallRealEstateEventMap.put(smallRealEstateEventType, new SmallRealEstateEvent(smallRealEstateEventType));
         }
     }
 
@@ -61,8 +61,12 @@ public class EventFactory {
         return bigOpportunityEventMap.get(bigOpportunityEventType);
     }
 
-    public static Event getSmallOpportunityEvent(SmallOpportunityEventType smallOpportunityEventType) {
-        return smallOpportunityEventMap.get(smallOpportunityEventType);
+    public static BigOpportunityEvent randomBigOpportunity() {
+        return bigOpportunityEventMap.get(BigOpportunityEventType.values()[random.nextInt(bigOpportunityEventMap.size())]);
+    }
+
+    public static Event getSmallRealEstateEvent(SmallRealEstateEventType smallRealEstateEventType) {
+        return smallRealEstateEventMap.get(smallRealEstateEventType);
     }
 
     public static MarketEvent randomMarketEvent() {
