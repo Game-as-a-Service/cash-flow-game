@@ -1,20 +1,14 @@
 package tw.waterball.cashflow.domain.entity;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import tw.waterball.cashflow.domain.entity.expense.Expense;
-import tw.waterball.cashflow.domain.entity.expense.ExpenseType;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ActorTest {
     @Test
-    void givenPlayerWithPassiveIncomeGreaterThanExpenses_whenIsInOuterCircle_thenReturnsTrue() {
+    void givenPlayerWithPassiveIncomeGreaterThanExpenses_whenIsInOuterCircle_thenReturnTrue() {
         // Given
         Actor actor = new Actor("Nick", Career.ENGINEER);
         FinancialStatementV2 fs = actor.getFinancialStatementV2();
@@ -29,7 +23,7 @@ class ActorTest {
     }
 
     @Test
-    void givenPlayerWithPassiveIncomeLessThanExpenses_whenIsInOuterCircle_thenReturnsFalse() {
+    void givenPlayerWithPassiveIncomeLessThanExpenses_whenIsInOuterCircle_thenReturnFalse() {
         // Given
         Actor actor = new Actor("Nick", Career.ENGINEER);
         FinancialStatementV2 fs = actor.getFinancialStatementV2();
@@ -44,7 +38,7 @@ class ActorTest {
     }
 
     @Test
-    void givenPlayerWithNoPassiveIncome_whenIsInOuterCircle_thenReturnsFalse() {
+    void givenPlayerWithNoPassiveIncome_whenIsInOuterCircle_thenReturnFalse() {
         // Given
         Actor actor = new Actor("Nick", Career.ENGINEER);
 
@@ -52,22 +46,8 @@ class ActorTest {
         boolean isReadyToOuterCircle = actor.isInOuterCircle(); // 初始財務的被動收入會小於總支出
 
         // Then
-        assertTrue(actor.getFinancialStatementV2().getIncome().getTotalPassiveIncomeAmount().equals(BigDecimal.ZERO));
+        assertEquals(BigDecimal.ZERO,actor.getFinancialStatementV2().getIncome().getTotalPassiveIncomeAmount());
         assertFalse(isReadyToOuterCircle);
-    }
-
-    @Test
-    @Disabled
-    void givenPlayerWithNoExpenses_whenIsInOuterCircle_thenReturnsTrue() {
-        Actor actor = new Actor("Nick", Career.ENGINEER);
-        FinancialStatement financialStatement = new FinancialStatement();
-        Map<ExpenseType, Expense> expenseMap = new HashMap<>();
-        expenseMap.put(ExpenseType.TAX,
-                       Expense.builder(ExpenseType.TAX).amount(BigDecimal.valueOf(0)).build());
-        financialStatement.setPassiveIncome(new BigDecimal(200));
-        financialStatement.setExpenseMap(expenseMap);
-        actor.setFinancialStatement(financialStatement);
-        assertTrue(actor.isInOuterCircle());
     }
 
     @Test
