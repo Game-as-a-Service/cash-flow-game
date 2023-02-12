@@ -56,7 +56,7 @@ public class Actor {
     }
 
     public boolean isInOuterCircle() {
-        return financialStatement.getPassiveIncome().compareTo(financialStatement.getTotalExpenseAmount()) >= 0;
+        return financialStatementV2.getIncome().getTotalPassiveIncomeAmount().compareTo(financialStatementV2.getExpense().getTotalExpenseAmount()) >= 0;
     }
 
     /**
