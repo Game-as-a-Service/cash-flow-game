@@ -8,6 +8,7 @@ import tw.waterball.cashflow.domain.entity.FinancialStatementV2;
 import tw.waterball.cashflow.domain.entity.exception.InsufficientCashException;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 /**
  * 額外支出事件
@@ -37,7 +38,7 @@ public class ExtraPaymentEvent implements Event {
     }
 
     @Override
-    public void execute(Actor actor) throws InsufficientCashException {
+    public void execute(Actor actor, Map<String, Object> param) throws InsufficientCashException {
         FinancialStatementV2 financialStatement = actor.getFinancialStatementV2();
         if (financialStatement.getCash().compareTo(getPayment()) < 0) {
             throw new InsufficientCashException();

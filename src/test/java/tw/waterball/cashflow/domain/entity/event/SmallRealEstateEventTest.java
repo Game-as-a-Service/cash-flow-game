@@ -34,7 +34,7 @@ class SmallRealEstateEventTest {
 
         // When 假裝抽到 BEDROOMS3_LIVING2_FOR_SALE
         Event SmallRealEstateEvent = EventFactory.getSmallRealEstateEvent(SmallRealEstateEventType.BEDROOMS3_LIVING2_FOR_SALE);
-        SmallRealEstateEvent.execute(actor);
+        SmallRealEstateEvent.execute(actor, null);
 
         // Then
         // 現金減少
@@ -57,6 +57,6 @@ class SmallRealEstateEventTest {
         Event smallRealEstateEvent = EventFactory.getSmallRealEstateEvent(SmallRealEstateEventType.BEDROOMS3_LIVING2_FOR_SALE);
 
         // When,Then
-        Assertions.assertThrows(InsufficientCashException.class, () -> smallRealEstateEvent.execute(actor));
+        Assertions.assertThrows(InsufficientCashException.class, () -> smallRealEstateEvent.execute(actor, null));
     }
 }

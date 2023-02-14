@@ -19,7 +19,7 @@ class ExtraPaymentTelevisionEventTest {
 
         // When 假裝抽到購買電視額外支出
         Event extraPaymentTelevisionEvent = EventFactory.getExtraPaymentEvent(ExtraPaymentEventType.TELEVISION);
-        extraPaymentTelevisionEvent.execute(actor);
+        extraPaymentTelevisionEvent.execute(actor, null);
 
         // Then 儲蓄少 5000
         BigDecimal paidAmount = currentCash.subtract(actor.getFinancialStatementV2().getCash());

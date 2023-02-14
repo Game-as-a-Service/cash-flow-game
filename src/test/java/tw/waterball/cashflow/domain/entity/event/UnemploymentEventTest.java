@@ -23,7 +23,7 @@ class UnemploymentEventTest {
         financialStatement.subtractCash(financialStatement.getCash());
 
         // When,Then
-        Assertions.assertThrows(InsufficientCashException.class, () -> unemploymentEvent.execute(actor));
+        Assertions.assertThrows(InsufficientCashException.class, () -> unemploymentEvent.execute(actor, null));
     }
 
     @Test
@@ -35,7 +35,7 @@ class UnemploymentEventTest {
         BigDecimal originalCash = financialStatement.getCash();
 
         // When
-        unemploymentEvent.execute(actor);
+        unemploymentEvent.execute(actor, null);
 
         // Then
         BigDecimal finalCash = originalCash.subtract(financialStatement.getExpense().getTotalExpenseAmount());

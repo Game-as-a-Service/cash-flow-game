@@ -3,6 +3,8 @@ package tw.waterball.cashflow.domain.entity.event;
 import tw.waterball.cashflow.domain.entity.Actor;
 import tw.waterball.cashflow.domain.entity.exception.InsufficientCashException;
 
+import java.util.Map;
+
 public interface Event {
     /**
      * @return 事件類型
@@ -15,5 +17,5 @@ public interface Event {
      * @param actor 玩家
      * @throws InsufficientCashException 儲蓄不足
      */
-    void execute(Actor actor) throws InsufficientCashException;
+    void execute(Actor actor, Map<String, Object> param) throws InsufficientCashException;
 }

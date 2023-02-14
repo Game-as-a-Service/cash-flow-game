@@ -24,7 +24,7 @@ class BigOpportunityEventTest {
 
         // When 假裝抽到 BEDROOMS3_LIVING2_FOR_SALE
         Event bigOpportunityEvent = EventFactory.getBigOpportunityEvent(BigOpportunityEventType.BEDROOMS3_LIVING2_FOR_SALE);
-        bigOpportunityEvent.execute(actor);
+        bigOpportunityEvent.execute(actor, null);
 
         // Then
         // 現金減少
@@ -47,6 +47,6 @@ class BigOpportunityEventTest {
         Event bigOpportunityEvent = EventFactory.getBigOpportunityEvent(BigOpportunityEventType.BEDROOMS3_LIVING2_FOR_SALE);
 
         // When,Then
-        Assertions.assertThrows(InsufficientCashException.class, () -> bigOpportunityEvent.execute(actor));
+        Assertions.assertThrows(InsufficientCashException.class, () -> bigOpportunityEvent.execute(actor, null));
     }
 }

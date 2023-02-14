@@ -21,6 +21,9 @@ public class EventFactory {
     private static Map<ExtraPaymentEventType, ExtraPaymentEvent> extraPaymentEventMap = new EnumMap<>(ExtraPaymentEventType.class);
     private static Map<BigOpportunityEventType, BigOpportunityEvent> bigOpportunityEventMap = new EnumMap<>(BigOpportunityEventType.class);
     private static Map<SmallRealEstateEventType, SmallRealEstateEvent> smallRealEstateEventMap = new EnumMap<>(SmallRealEstateEventType.class);
+    private static Map<StockEventType, StockEvent> storckEventMap = new EnumMap<>(StockEventType.class);
+
+    private static List<Map> smallOpportunityList = Arrays.asList(smallRealEstateEventMap, storckEventMap);
     private static List<FinancialItemName> realEstateList = Arrays.asList(FinancialItemName.REAL_ESTATE_CONDO_2_BR_1_BA, FinancialItemName.REAL_ESTATE_HOUSE_3_BR_2_BA);
     private static Random random = new Random();
 
@@ -31,9 +34,11 @@ public class EventFactory {
         for (BigOpportunityEventType bigOpportunityEventType : BigOpportunityEventType.values()) {
             bigOpportunityEventMap.put(bigOpportunityEventType, new BigOpportunityEvent(bigOpportunityEventType));
         }
-
         for (SmallRealEstateEventType smallRealEstateEventType : SmallRealEstateEventType.values()) {
             smallRealEstateEventMap.put(smallRealEstateEventType, new SmallRealEstateEvent(smallRealEstateEventType));
+        }
+        for (StockEventType stockEventType : StockEventType.values()){
+            storckEventMap.put(stockEventType, new StockEvent(stockEventType));
         }
     }
 
@@ -67,6 +72,13 @@ public class EventFactory {
 
     public static Event getSmallRealEstateEvent(SmallRealEstateEventType smallRealEstateEventType) {
         return smallRealEstateEventMap.get(smallRealEstateEventType);
+    }
+
+    public static Event randomSmallOpportunity(){
+        Map smallOpportunityMap = smallOpportunityList.get(random.nextInt(smallOpportunityList.size()));
+        // TODO
+
+        return null;
     }
 
     public static MarketEvent randomMarketEvent() {

@@ -24,7 +24,7 @@ class MarketEventTest {
 
         // When
         MarketEvent marketEvent = new MarketEvent(INFLATION_HIT, FinancialItemName.REAL_ESTATE_HOUSE_3_BR_2_BA, INFLATION_HIT.getAmount());
-        marketEvent.execute(engineer);
+        marketEvent.execute(engineer, null);
 
         // Then
         assertThat(oldIncomeAmount).isEqualTo(financialStmt.getIncome().getTotalIncomeAmount());
@@ -47,7 +47,7 @@ class MarketEventTest {
         // When
         MarketEvent marketEvent = new MarketEvent(INFLATION_HIT, FinancialItemName.REAL_ESTATE_HOUSE_3_BR_2_BA, INFLATION_HIT.getAmount());
         marketEvent.setRealEstateItemIDToSell(itemID);
-        marketEvent.execute(engineer);
+        marketEvent.execute(engineer, null);
 
         // Then
         assertThat(financialStmt.getIncome().getTotalIncomeAmount().subtract(oldIncomeAmount)).isEqualTo(BigDecimal.valueOf(100));

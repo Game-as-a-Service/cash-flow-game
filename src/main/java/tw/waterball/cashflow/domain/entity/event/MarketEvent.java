@@ -11,6 +11,7 @@ import tw.waterball.cashflow.domain.entity.FinancialStatementV2;
 import tw.waterball.cashflow.domain.entity.exception.InsufficientCashException;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 /**
  * 市場風雲事件
@@ -43,7 +44,7 @@ public class MarketEvent implements Event {
     }
 
     @Override
-    public void execute(Actor actor) throws InsufficientCashException {
+    public void execute(Actor actor, Map<String, Object> param) throws InsufficientCashException {
         FinancialStatementV2 financialStmt = actor.getFinancialStatementV2();
         if(!financialStmt.getAsset().realEstateExists(this.realEstateItemName)) {
             return;

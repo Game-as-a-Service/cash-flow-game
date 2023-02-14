@@ -5,6 +5,8 @@ import tw.waterball.cashflow.domain.entity.FinancialItem;
 import tw.waterball.cashflow.domain.entity.FinancialStatementV2;
 import tw.waterball.cashflow.domain.entity.exception.InsufficientCashException;
 
+import java.util.Map;
+
 public class SmallRealEstateEvent implements Event {
     SmallRealEstateEventType smallRealEstateEventType;
 
@@ -18,7 +20,7 @@ public class SmallRealEstateEvent implements Event {
     }
 
     @Override
-    public void execute(Actor actor) throws InsufficientCashException {
+    public void execute(Actor actor, Map<String, Object> param) throws InsufficientCashException {
         FinancialStatementV2 financialStatement = actor.getFinancialStatementV2();
         if (financialStatement.getCash().compareTo(smallRealEstateEventType.getDownPayment()) < 0) {
             throw new InsufficientCashException("[Cash:DownPayment] [" + financialStatement.getCash() + ":" + smallRealEstateEventType.getDownPayment() + "]");

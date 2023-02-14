@@ -18,7 +18,7 @@ class CharityEventTest {
         Actor actor = new Actor("玩家A", ENGINEER);
 
         // When
-        charityEvent.execute(actor);
+        charityEvent.execute(actor, null);
 
         // Then
         Assertions.assertEquals(3, actor.getTurnNumber());
