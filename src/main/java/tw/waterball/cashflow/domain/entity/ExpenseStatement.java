@@ -1,6 +1,8 @@
 package tw.waterball.cashflow.domain.entity;
 
 import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -18,6 +20,13 @@ public class ExpenseStatement {
 
     public void removeExpense(String id) {
         this.map.remove(id);
+    }
+
+    /**
+     * @return 取得所有支出項目
+     */
+    public Collection<FinancialItem> getAllExpenses() {
+        return Collections.unmodifiableCollection(this.map.values());
     }
 
     /**
