@@ -69,7 +69,7 @@ public class IncomeStatement {
      * @return 所有的房地產收入項目
      */
     public Collection<FinancialItem> getAllRealEstates() {
-        return Collections.unmodifiableCollection(this.dividendMap.values());
+        return Collections.unmodifiableCollection(this.realEstateMap.values());
     }
 
     /**
@@ -97,20 +97,27 @@ public class IncomeStatement {
      *
      * @param id 收入 item ID
      */
-    public void removeIncome(String id) {
+    public void removeIncome(String id, int count) {
         if (Objects.nonNull(this.interestMap.remove(id))) {
             return;
         }
-
-        if (Objects.nonNull(this.dividendMap.remove(id))) {
-            return;
-        }
-
         if (Objects.nonNull(this.realEstateMap.remove(id))) {
             return;
         }
+        if (Objects.nonNull(this.businessMap.remove(id))) {
+            return;
+        }
+        FinancialItem dividendItem = this.dividendMap.get(id);
+        if (Objects.nonNull(dividendItem)) {
+            int finalCount = dividendItem.getCount() - count;
+            if(finalCount == 0){
+                dividendMap.remove(id);
+            }else {
+                dividendItem.setCount(finalCount);
+            }
+        }
 
-        this.businessMap.remove(id);
+
     }
 
     /**

@@ -74,6 +74,10 @@ public class FinancialItem {
         return new FinancialItemBuilder(id, name, amount);
     }
 
+    public static FinancialItemBuilder builder(@NonNull String id, @NonNull FinancialItemName name, @NonNull BigDecimal amount, @NonNull int count) {
+        return new FinancialItemBuilder(id, name, amount, count);
+    }
+
     public static final class FinancialItemBuilder {
         private String id;
         private FinancialItemName name;
@@ -84,6 +88,11 @@ public class FinancialItem {
             this.id = id;
             this.name = name;
             this.amount = amount;
+        }
+
+        private FinancialItemBuilder(String id, FinancialItemName name, BigDecimal amount, int count) {
+            this(id, name, amount);
+            this.count = count;
         }
 
         public FinancialItemBuilder amount(BigDecimal amount) {

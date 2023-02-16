@@ -37,7 +37,7 @@ public class EventFactory {
         for (SmallRealEstateEventType smallRealEstateEventType : SmallRealEstateEventType.values()) {
             smallRealEstateEventMap.put(smallRealEstateEventType, new SmallRealEstateEvent(smallRealEstateEventType));
         }
-        for (StockEventType stockEventType : StockEventType.values()){
+        for (StockEventType stockEventType : StockEventType.values()) {
             storckEventMap.put(stockEventType, new StockEvent(stockEventType));
         }
     }
@@ -74,7 +74,11 @@ public class EventFactory {
         return smallRealEstateEventMap.get(smallRealEstateEventType);
     }
 
-    public static Event randomSmallOpportunity(){
+    public static Event getStockEvent(StockEventType stockEventType){
+        return storckEventMap.get(stockEventType);
+    }
+
+    public static Event randomSmallOpportunity() {
         Map smallOpportunityMap = smallOpportunityList.get(random.nextInt(smallOpportunityList.size()));
         // TODO
 
