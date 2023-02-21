@@ -4,9 +4,11 @@ import tw.waterball.cashflow.domain.entity.Actor;
 import tw.waterball.cashflow.domain.entity.FinancialItem;
 import tw.waterball.cashflow.domain.entity.FinancialStatementV2;
 import tw.waterball.cashflow.domain.entity.exception.InsufficientCashException;
+import tw.waterball.cashflow.domain.entity.exception.InsufficientSharesException;
 
 import java.math.BigDecimal;
 import java.util.Map;
+import java.util.Optional;
 
 public class StockEvent implements Event {
     public static final String PARAM_IS_BUY = "isBuy";
@@ -38,17 +40,29 @@ public class StockEvent implements Event {
             financialStatement.subtractCash(totalCost);
             String itemId = stockEventType.name() + "-" + System.currentTimeMillis();
 
-            if(stockEventType.getCashFlow().compareTo(BigDecimal.ZERO) > 0){
-                financialStatement.getIncome().addDividend(FinancialItem.builder(itemId, stockEventType.getName(), stockEventType.getCashFlow(), shares).build());
+            if (stockEventType.getCashFlow().compareTo(BigDecimal.ZERO) > 0) {
+                financialStatement.getIncome().addDividend(FinancialItem.builder(itemId, stockEventType.getName(), stockEventType.getCashFlow()).count(shares).build());
             }
-            financialStatement.getAsset().addStock(FinancialItem.builder(itemId, stockEventType.getName(), stockEventType.getCost(), shares).build());
+            financialStatement.getAsset().addStock(FinancialItem.builder(itemId, stockEventType.getName(), stockEventType.getCost()).count(shares).build());
         } else {
             // sell
             String itemId = (String) param.get(PARAM_ITEM_ID);
-            financialStatement.getIncome().removeIncome(itemId, shares);
+            Optional<FinancialItem> dividendOptional = financialStatement.getIncome().getDividend(itemId);
+            dividendOptional.ifPresent(dividendItem -> {
+                if (dividendItem.getCount() < shares) {
+                    // 股數不夠
+                    throw new InsufficientSharesException("[Shares:Have] [" + shares + ":" + dividendItem.getCount() + "]");
+                } else if (dividendItem.getCount() == shares) {
+                    financialStatement.getIncome().removeIncome(itemId);
+                } else {
+                    dividendItem.setCount(dividendItem.getCount() - shares);
+                }
+            });
+            BigDecimal totalCost = stockEventType.getCost().multiply(BigDecimal.valueOf(shares));
+            financialStatement.addCash(totalCost);
 
+            financialStatement.getAsset().removeAsset(itemId);
         }
     }
-
 
 }

@@ -45,6 +45,10 @@ public class IncomeStatement {
         this.dividendMap.put(dividendItem.getId(), dividendItem);
     }
 
+    public Optional<FinancialItem> getDividend(String id) {
+        return Optional.ofNullable(this.dividendMap.get(id));
+    }
+
     /**
      * @return 所有的分紅收入項目
      */
@@ -97,27 +101,18 @@ public class IncomeStatement {
      *
      * @param id 收入 item ID
      */
-    public void removeIncome(String id, int count) {
+    public void removeIncome(String id) {
         if (Objects.nonNull(this.interestMap.remove(id))) {
             return;
         }
         if (Objects.nonNull(this.realEstateMap.remove(id))) {
             return;
         }
-        if (Objects.nonNull(this.businessMap.remove(id))) {
+        if (Objects.nonNull(this.dividendMap.remove(id))) {
             return;
         }
-        FinancialItem dividendItem = this.dividendMap.get(id);
-        if (Objects.nonNull(dividendItem)) {
-            int finalCount = dividendItem.getCount() - count;
-            if(finalCount == 0){
-                dividendMap.remove(id);
-            }else {
-                dividendItem.setCount(finalCount);
-            }
-        }
 
-
+        this.businessMap.remove(id);
     }
 
     /**
