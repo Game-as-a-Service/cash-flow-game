@@ -8,6 +8,7 @@ package tw.waterball.cashflow.domain.entity.expense;
  * @see tw.waterball.cashflow.domain.entity.FinancialItemName
  * @see tw.waterball.cashflow.domain.entity.FinancialStatementV2
  */
+@Deprecated(forRemoval = true)
 public enum ExpenseType {
     /**
      * 利息

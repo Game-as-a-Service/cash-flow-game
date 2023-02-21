@@ -17,6 +17,7 @@ import java.math.BigDecimal;
 @Getter
 @ToString
 @Builder
+@Deprecated(forRemoval = true)
 public class Expense {
     private ExpenseType type;
     private BigDecimal amount;
