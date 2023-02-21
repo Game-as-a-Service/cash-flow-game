@@ -6,6 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 import tw.waterball.cashflow.application.usecase.util.FinancialStatementUtils;
 
+import java.util.UUID;
+
 @Getter
 @ToString
 @EqualsAndHashCode
@@ -13,6 +15,7 @@ public class Actor {
     @Setter
     private String dream;
 
+    private final String actorId;
     private final String actorName;
 
     private final Career career;
@@ -21,7 +24,7 @@ public class Actor {
      * @deprecated
      * @see #getFinancialStatementV2()
      */
-    @Deprecated
+    @Deprecated(forRemoval = true)
     private FinancialStatement financialStatement;
     private FinancialStatementV2 financialStatementV2;
     @Setter
@@ -49,6 +52,7 @@ public class Actor {
     private int turnNumber = 1;
 
     public Actor(final String actorName, final Career career) {
+        this.actorId = UUID.randomUUID().toString();
         this.actorName = actorName;
         this.career = career;
         this.financialStatement = FinancialStatementUtils.initialize(this.career);
@@ -62,7 +66,7 @@ public class Actor {
     /**
      * @deprecated Actor 建構式已針對職業做財務初始化了，故不建議使用此方法設定財務物件。
      */
-    @Deprecated
+    @Deprecated(forRemoval = true)
     public void setFinancialStatement(FinancialStatement financialStatement) {
         this.financialStatement = financialStatement;
     }
