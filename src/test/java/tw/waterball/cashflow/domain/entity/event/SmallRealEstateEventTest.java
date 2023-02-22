@@ -12,15 +12,6 @@ import java.math.BigDecimal;
 
 class SmallRealEstateEventTest {
 
-    // 買股票，有現金流
-
-    // 買股票，沒有現金流
-
-    // 賣股票
-
-    // 基金??
-
-    // 買房
     @Test
     void giveHoseEventType_whenSmallRealEstateEvent_thenSubtractCaseAndAddIncome() throws InsufficientCashException {
         // Given

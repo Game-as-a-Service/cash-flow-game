@@ -34,22 +34,12 @@ public class FinancialItem {
     private FinancialItem(String id, FinancialItemName name, BigDecimal amount, int count) {
         this.id = id;
         this.name = name;
-        setAmount(amount);
+        this.amount = amount;
         setCount(count);
     }
 
     /**
-     * @param amount 單價金額 不得為 0
-     * @throws IllegalArgumentException if amount = 0
-     */
-    public void setAmount(BigDecimal amount) {
-        if(Objects.isNull(amount) || BigDecimal.ZERO.compareTo(amount) == 0) {
-            throw new IllegalArgumentException("Amount must != 0");
-        }
-        this.amount = amount;
-    }
-
-    /**
+     * 因為股票數量會異動，所以這個方法需要保留
      * @param count 大於 0 的數量
      * @throws IllegalArgumentException if count < 1
      */
@@ -87,6 +77,9 @@ public class FinancialItem {
         }
 
         public FinancialItemBuilder amount(BigDecimal amount) {
+            if(Objects.isNull(amount) || BigDecimal.ZERO.compareTo(amount) == 0) {
+                throw new IllegalArgumentException("Amount must != 0");
+            }
             this.amount = amount;
             return this;
         }

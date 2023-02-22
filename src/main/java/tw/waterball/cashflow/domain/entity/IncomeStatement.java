@@ -45,6 +45,10 @@ public class IncomeStatement {
         this.dividendMap.put(dividendItem.getId(), dividendItem);
     }
 
+    public Optional<FinancialItem> getDividend(String id) {
+        return Optional.ofNullable(this.dividendMap.get(id));
+    }
+
     /**
      * @return 所有的分紅收入項目
      */
@@ -69,7 +73,7 @@ public class IncomeStatement {
      * @return 所有的房地產收入項目
      */
     public Collection<FinancialItem> getAllRealEstates() {
-        return Collections.unmodifiableCollection(this.dividendMap.values());
+        return Collections.unmodifiableCollection(this.realEstateMap.values());
     }
 
     /**
@@ -101,12 +105,10 @@ public class IncomeStatement {
         if (Objects.nonNull(this.interestMap.remove(id))) {
             return;
         }
-
-        if (Objects.nonNull(this.dividendMap.remove(id))) {
+        if (Objects.nonNull(this.realEstateMap.remove(id))) {
             return;
         }
-
-        if (Objects.nonNull(this.realEstateMap.remove(id))) {
+        if (Objects.nonNull(this.dividendMap.remove(id))) {
             return;
         }
 
