@@ -25,6 +25,10 @@ public class EventFactory {
 
     private static List<Map> smallOpportunityList = Arrays.asList(smallRealEstateEventMap, storckEventMap);
     private static List<FinancialItemName> realEstateList = Arrays.asList(FinancialItemName.REAL_ESTATE_CONDO_2_BR_1_BA, FinancialItemName.REAL_ESTATE_HOUSE_3_BR_2_BA);
+    private static CharityEvent charityEvent = new CharityEvent();
+    private static SettlementDateEvent settlementDateEvent = new SettlementDateEvent();
+    private static UnemploymentEvent unemploymentEvent = new UnemploymentEvent();
+    private static DealOpportunityEvent dealOpportunityEvent = new DealOpportunityEvent();
     private static Random random = new Random();
 
     static {
@@ -52,6 +56,27 @@ public class EventFactory {
     public static Event getEvent(EventType eventType, Optional<Object> subEventType) {
         // TODO 待實作
         throw new UnsupportedOperationException();
+    }
+
+    public static Event getEvent(EventType eventType) {
+        switch(eventType) {
+            case MARKET:
+                return randomMarketEvent();
+            case EXTRA_PAYMENT:
+                return randomExtraPayment();
+            case DEAL_OPPORTUNITY:
+                return dealOpportunityEvent;
+            case SETTLEMENT_DATE:
+                return settlementDateEvent;
+            case CHARITY:
+                return charityEvent;
+            case UNEMPLOYMENT:
+                return unemploymentEvent;
+            case CHILD:
+                // TODO 須實作
+            default:
+                throw new UnsupportedOperationException();
+        }
     }
 
     public static ExtraPaymentEvent getExtraPaymentEvent(ExtraPaymentEventType extraPaymentEventType) {
