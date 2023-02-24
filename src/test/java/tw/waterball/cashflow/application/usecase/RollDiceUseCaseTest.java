@@ -2,6 +2,7 @@ package tw.waterball.cashflow.application.usecase;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import tw.waterball.cashflow.application.repository.ActorRepository;
@@ -17,6 +18,9 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class RollDiceUseCaseTest {
+    @InjectMocks
+    RollDiceUseCase useCase;
+
     @Mock
     ActorRepository actorRepository;
 
@@ -38,8 +42,7 @@ public class RollDiceUseCaseTest {
         when(actorRepository.findByActorId(anyString())).thenReturn(Optional.of(actor));
 
         // When
-        RollDiceUseCase useCase = new RollDiceUseCase();
-        useCase.execute(actorId, actorRepository);
+        useCase.rollDice(actorId);
 
         // Then
         assertThat(oldPosition).isNotEqualTo(actor.getPosition());
@@ -64,8 +67,7 @@ public class RollDiceUseCaseTest {
         when(actorRepository.findByActorId(anyString())).thenReturn(Optional.of(actor));
 
         // When
-        RollDiceUseCase useCase = new RollDiceUseCase();
-        useCase.execute(actorId, actorRepository);
+        useCase.rollDice(actorId);
 
         // Then
         assertThat(oldPosition).isEqualTo(actor.getPosition()); // 棋盤仍停留原本位置
@@ -90,8 +92,7 @@ public class RollDiceUseCaseTest {
         when(actorRepository.findByActorId(anyString())).thenReturn(Optional.of(actor));
 
         // When
-        RollDiceUseCase useCase = new RollDiceUseCase();
-        useCase.execute(actorId, actorRepository);
+        useCase.rollDice(actorId);
 
         // Then
         assertThat(oldPosition).isEqualTo(actor.getPosition()); // 棋盤仍停留原本位置

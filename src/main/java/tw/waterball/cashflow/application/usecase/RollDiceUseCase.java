@@ -1,5 +1,6 @@
 package tw.waterball.cashflow.application.usecase;
 
+import lombok.RequiredArgsConstructor;
 import tw.waterball.cashflow.application.repository.ActorRepository;
 import tw.waterball.cashflow.domain.entity.Actor;
 import tw.waterball.cashflow.domain.entity.ActorState;
@@ -11,9 +12,11 @@ import java.util.Random;
 /**
  * 擲骰子 use case
  */
+@RequiredArgsConstructor
 public class RollDiceUseCase {
     private static Random dice = new Random();
-    public void execute(String actorId, ActorRepository actorRepo) {
+    private final ActorRepository actorRepo;
+    public void rollDice(String actorId) {
         Actor actor = actorRepo.findByActorId(actorId).orElseThrow(() -> new ActorNotFound(actorId));
         if(ActorState.MY_TURN == actor.getState()) {
             // 若使用 Java 17+，可使用 Random.nextInt(int, int)。
