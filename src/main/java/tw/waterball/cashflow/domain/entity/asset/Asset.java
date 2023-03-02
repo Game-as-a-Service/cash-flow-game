@@ -18,6 +18,7 @@ import java.math.BigDecimal;
 @Builder
 @Getter
 @ToString
+@Deprecated(forRemoval = true)
 public class Asset {
     private AssetType type;
     private BigDecimal amount;

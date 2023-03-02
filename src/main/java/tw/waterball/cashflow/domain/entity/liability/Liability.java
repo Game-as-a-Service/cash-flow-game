@@ -17,6 +17,7 @@ import java.math.BigDecimal;
 @Builder
 @Getter
 @ToString
+@Deprecated(forRemoval = true)
 public class Liability {
     private LiabilityType type;
     private BigDecimal amount;

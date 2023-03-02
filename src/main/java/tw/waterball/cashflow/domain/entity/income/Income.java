@@ -17,6 +17,7 @@ import java.math.BigDecimal;
 @Getter
 @Builder
 @ToString
+@Deprecated(forRemoval = true)
 public class Income {
     private IncomeType type;
     private BigDecimal amount;

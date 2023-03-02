@@ -6,6 +6,14 @@ public enum ActorState {
      */
     NONE,
     /**
+     * 輪到我的回合，尚未擲骰子。
+     */
+    MY_TURN,
+    /**
+     * 已擲骰
+     */
+    DICE_ROLLED,
+    /**
      * 失業中
      */
     UNEMPLOYMENT,
@@ -16,5 +24,5 @@ public enum ActorState {
     /**
      * 慈善事件
      */
-    CHARITY
+    CHARITY // TODO 似乎不需要這種狀態
 }
