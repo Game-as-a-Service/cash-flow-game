@@ -17,12 +17,6 @@ public class Actor {
 
     private final Career career;
 
-    /**
-     * @deprecated
-     * @see #getFinancialStatementV2()
-     */
-    @Deprecated
-    private FinancialStatement financialStatement;
     private FinancialStatementV2 financialStatementV2;
     @Setter
     private int position = 0;
@@ -51,7 +45,6 @@ public class Actor {
     public Actor(final String actorName, final Career career) {
         this.actorName = actorName;
         this.career = career;
-        this.financialStatement = FinancialStatementUtils.initialize(this.career);
         this.financialStatementV2 = FinancialStatementUtils.initializeV2(this.career);
     }
 
@@ -59,11 +52,4 @@ public class Actor {
         return financialStatementV2.getIncome().getTotalPassiveIncomeAmount().compareTo(financialStatementV2.getExpense().getTotalExpenseAmount()) >= 0;
     }
 
-    /**
-     * @deprecated Actor 建構式已針對職業做財務初始化了，故不建議使用此方法設定財務物件。
-     */
-    @Deprecated
-    public void setFinancialStatement(FinancialStatement financialStatement) {
-        this.financialStatement = financialStatement;
-    }
 }

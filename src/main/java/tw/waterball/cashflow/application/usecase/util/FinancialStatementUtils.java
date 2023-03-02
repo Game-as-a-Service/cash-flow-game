@@ -5,65 +5,15 @@ import tw.waterball.cashflow.domain.entity.Career;
 import tw.waterball.cashflow.domain.entity.ExpenseStatement;
 import tw.waterball.cashflow.domain.entity.FinancialItem;
 import tw.waterball.cashflow.domain.entity.FinancialItemName;
-import tw.waterball.cashflow.domain.entity.FinancialStatement;
 import tw.waterball.cashflow.domain.entity.FinancialStatementV2;
 import tw.waterball.cashflow.domain.entity.IncomeStatement;
 import tw.waterball.cashflow.domain.entity.LiabilityStatement;
-import tw.waterball.cashflow.domain.entity.expense.Expense;
-import tw.waterball.cashflow.domain.entity.expense.ExpenseType;
-import tw.waterball.cashflow.domain.entity.income.Income;
-import tw.waterball.cashflow.domain.entity.income.IncomeType;
-import tw.waterball.cashflow.domain.entity.liability.Liability;
-import tw.waterball.cashflow.domain.entity.liability.LiabilityType;
 
 import java.math.BigDecimal;
 
 public class FinancialStatementUtils {
     private FinancialStatementUtils() {
         throw new IllegalStateException("Utility class");
-    }
-
-    /**
-     * @see #initializeV2(Career)
-     * @deprecated
-     */
-    @Deprecated
-    public static FinancialStatement initialize(Career career) {
-        FinancialStatement financialStatement;
-        switch (career) {
-            case ENGINEER:
-                financialStatement = new FinancialStatement();
-                financialStatement.addIncome(Income.builder(IncomeType.SALARY).amount(BigDecimal.valueOf(2500)).build());
-
-                financialStatement.addExpense(Expense.builder(ExpenseType.TAX).amount(BigDecimal.valueOf(460)).build());
-                financialStatement.addExpense(Expense.builder(ExpenseType.HOME_MORTGAGE_PAYMENT).amount(BigDecimal.valueOf(400)).build());
-                financialStatement.addExpense(Expense.builder(ExpenseType.CAR_LOAN_PAYMENT).amount(BigDecimal.valueOf(80)).build());
-                financialStatement.addExpense(Expense.builder(ExpenseType.CREDIT_CARD_PAYMENT).amount(BigDecimal.valueOf(100)).build());
-                financialStatement.addExpense(Expense.builder(ExpenseType.OTHER_EXPENSES).amount(BigDecimal.valueOf(550)).build());
-
-                financialStatement.addLiability(Liability.builder(LiabilityType.HOME_MORTGAGE).amount(BigDecimal.valueOf(38000)).build());
-                financialStatement.addLiability(Liability.builder(LiabilityType.CAR_LOANS).amount(BigDecimal.valueOf(4000)).build());
-                financialStatement.addLiability(Liability.builder(LiabilityType.CREDIT_CARD).amount(BigDecimal.valueOf(3000)).build());
-
-                financialStatement.addCash(BigDecimal.valueOf(5000));
-                return financialStatement;
-            case TEACHER:
-                financialStatement = new FinancialStatement();
-                financialStatement.addIncome(Income.builder(IncomeType.SALARY).amount(BigDecimal.valueOf(1500)).build());
-
-                financialStatement.addExpense(Expense.builder(ExpenseType.TAX).amount(BigDecimal.valueOf(400)).build());
-                financialStatement.addExpense(Expense.builder(ExpenseType.HOME_MORTGAGE_PAYMENT).amount(BigDecimal.valueOf(300)).build());
-                financialStatement.addExpense(Expense.builder(ExpenseType.CREDIT_CARD_PAYMENT).amount(BigDecimal.valueOf(100)).build());
-                financialStatement.addExpense(Expense.builder(ExpenseType.OTHER_EXPENSES).amount(BigDecimal.valueOf(200)).build());
-
-                financialStatement.addLiability(Liability.builder(LiabilityType.HOME_MORTGAGE).amount(BigDecimal.valueOf(20000)).build());
-                financialStatement.addLiability(Liability.builder(LiabilityType.CREDIT_CARD).amount(BigDecimal.valueOf(5000)).build());
-
-                financialStatement.addCash(BigDecimal.valueOf(3000));
-                return financialStatement;
-            default:
-                throw new UnsupportedOperationException("Not implemented yet.");
-        }
     }
 
     /**
@@ -203,17 +153,38 @@ public class FinancialStatementUtils {
                 throw new UnsupportedOperationException("Not implemented yet.");
         }
 
-        income = new IncomeStatement(FinancialItem.builder(FinancialItemName.SALARY.toString(), FinancialItemName.SALARY, salary).build());
-        expense.addExpense(FinancialItem.builder(FinancialItemName.TAX.toString(), FinancialItemName.TAX, expenseTax).build());
-        expense.addExpense(FinancialItem.builder(FinancialItemName.HOME_MORTGAGE.toString(), FinancialItemName.HOME_MORTGAGE, expenseHomeMortgage).build());
-        expense.addExpense(FinancialItem.builder(FinancialItemName.CAR_LOAN.toString(), FinancialItemName.CAR_LOAN, expenseCarLoan).build());
-        expense.addExpense(FinancialItem.builder(FinancialItemName.CREDIT_CARD.toString(), FinancialItemName.CREDIT_CARD, expenseCreditCard).build());
-        expense.addExpense(FinancialItem.builder(FinancialItemName.RETAIL.toString(), FinancialItemName.RETAIL, expenseRetail).build());
-        expense.addExpense(FinancialItem.builder(FinancialItemName.OTHER.toString(), FinancialItemName.OTHER, expenseOther).build());
-        liability.addBasicLiability(FinancialItem.builder(FinancialItemName.HOME_MORTGAGE.toString(), FinancialItemName.HOME_MORTGAGE, liabilityHomeMortgage).build());
-        liability.addBasicLiability(FinancialItem.builder(FinancialItemName.CAR_LOAN.toString(), FinancialItemName.CAR_LOAN, liabilityCarLoan).build());
-        liability.addBasicLiability(FinancialItem.builder(FinancialItemName.CREDIT_CARD.toString(), FinancialItemName.CREDIT_CARD, liabilityCreditCard).build());
-        liability.addBasicLiability(FinancialItem.builder(FinancialItemName.RETAIL.toString(), FinancialItemName.RETAIL, liabilityRetail).build());
+        income = new IncomeStatement(FinancialItem.builder(FinancialItemName.SALARY.toString(),
+                                                           FinancialItemName.SALARY,
+                                                           salary).build());
+        expense.addExpense(FinancialItem.builder(FinancialItemName.TAX.toString(), FinancialItemName.TAX, expenseTax)
+                                        .build());
+        expense.addExpense(FinancialItem.builder(FinancialItemName.HOME_MORTGAGE.toString(),
+                                                 FinancialItemName.HOME_MORTGAGE,
+                                                 expenseHomeMortgage).build());
+        expense.addExpense(FinancialItem.builder(FinancialItemName.CAR_LOAN.toString(),
+                                                 FinancialItemName.CAR_LOAN,
+                                                 expenseCarLoan).build());
+        expense.addExpense(FinancialItem.builder(FinancialItemName.CREDIT_CARD.toString(),
+                                                 FinancialItemName.CREDIT_CARD,
+                                                 expenseCreditCard).build());
+        expense.addExpense(FinancialItem.builder(FinancialItemName.RETAIL.toString(),
+                                                 FinancialItemName.RETAIL,
+                                                 expenseRetail).build());
+        expense.addExpense(FinancialItem.builder(FinancialItemName.OTHER.toString(),
+                                                 FinancialItemName.OTHER,
+                                                 expenseOther).build());
+        liability.addBasicLiability(FinancialItem.builder(FinancialItemName.HOME_MORTGAGE.toString(),
+                                                          FinancialItemName.HOME_MORTGAGE,
+                                                          liabilityHomeMortgage).build());
+        liability.addBasicLiability(FinancialItem.builder(FinancialItemName.CAR_LOAN.toString(),
+                                                          FinancialItemName.CAR_LOAN,
+                                                          liabilityCarLoan).build());
+        liability.addBasicLiability(FinancialItem.builder(FinancialItemName.CREDIT_CARD.toString(),
+                                                          FinancialItemName.CREDIT_CARD,
+                                                          liabilityCreditCard).build());
+        liability.addBasicLiability(FinancialItem.builder(FinancialItemName.RETAIL.toString(),
+                                                          FinancialItemName.RETAIL,
+                                                          liabilityRetail).build());
         financialStatement = new FinancialStatementV2(income, expense, asset, liability);
         financialStatement.addCash(cash);
         return financialStatement;
