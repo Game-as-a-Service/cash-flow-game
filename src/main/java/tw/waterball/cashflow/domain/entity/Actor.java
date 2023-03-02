@@ -6,6 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 import tw.waterball.cashflow.application.usecase.util.FinancialStatementUtils;
 
+import java.util.UUID;
+
 @Getter
 @ToString
 @EqualsAndHashCode
@@ -13,6 +15,7 @@ public class Actor {
     @Setter
     private String dream;
 
+    private final String actorId;
     private final String actorName;
 
     private final Career career;
@@ -43,6 +46,7 @@ public class Actor {
     private int turnNumber = 1;
 
     public Actor(final String actorName, final Career career) {
+        this.actorId = UUID.randomUUID().toString();
         this.actorName = actorName;
         this.career = career;
         this.financialStatementV2 = FinancialStatementUtils.initializeV2(this.career);
