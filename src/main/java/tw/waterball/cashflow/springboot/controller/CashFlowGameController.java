@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/game")
-public class CatchFlowGameController {
+public class CashFlowGameController {
 
     private final StartGameUseCase startGameUseCase;
 

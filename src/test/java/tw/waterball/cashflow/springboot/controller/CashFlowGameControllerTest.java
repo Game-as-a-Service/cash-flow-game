@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
-import tw.waterball.cashflow.application.repository.CatchFlowGameRepository;
-import tw.waterball.cashflow.domain.CatchFlowGame;
+import tw.waterball.cashflow.application.repository.CashFlowGameRepository;
+import tw.waterball.cashflow.domain.CashFlowGame;
 import tw.waterball.cashflow.domain.entity.Actor;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -16,12 +16,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class CatchFlowGameControllerTest {
+class CashFlowGameControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
-    private CatchFlowGameRepository gameRepository;
+    private CashFlowGameRepository gameRepository;
 
     /**
      * 玩家皆加入遊戲且準備完成，主持人啟動遊戲，
@@ -41,7 +41,7 @@ class CatchFlowGameControllerTest {
                .andExpect(status().isNoContent());
 
 
-        CatchFlowGame actualGame = findGameById(roomId);
+        CashFlowGame actualGame = findGameById(roomId);
 
         Actor actualA = actualGame.getActor(actorA);
         Assertions.assertNotNull(actualA.getCareer());
@@ -50,7 +50,7 @@ class CatchFlowGameControllerTest {
         Assertions.assertNotNull(actualB.getCareer());
     }
 
-    private CatchFlowGame findGameById(String roomId) {
+    private CashFlowGame findGameById(String roomId) {
         // 從 repo 查出 game
         return gameRepository.findById(roomId).orElseThrow();
     }

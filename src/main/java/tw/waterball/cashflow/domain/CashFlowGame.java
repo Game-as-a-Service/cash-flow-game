@@ -6,10 +6,10 @@ import java.util.Map;
 
 import static java.lang.String.format;
 
-public class CatchFlowGame {
+public class CashFlowGame {
     private final Map<String, Actor> actors;
 
-    public CatchFlowGame(Map<String, Actor> actors) {
+    public CashFlowGame(Map<String, Actor> actors) {
         this.actors = actors;
     }
 

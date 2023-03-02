@@ -1,6 +1,7 @@
 package tw.waterball.cashflow.application.usecase;
 
 import tw.waterball.cashflow.domain.entity.Actor;
+import tw.waterball.cashflow.domain.entity.Career;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,4 +20,10 @@ public class StartGameUseCase {
 
         actorMap.put(actor.getActorName(), actor);
     }
+//
+//    public exec(){
+//
+//        Actor actor1 = new Actor("name_1", Career.ENGINEER);
+//        Actor actor2 = new Actor("name_2", Career.TEACHER);
+//    }
 }
