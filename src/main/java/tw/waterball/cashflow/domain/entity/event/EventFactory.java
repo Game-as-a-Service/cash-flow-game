@@ -29,6 +29,7 @@ public class EventFactory {
     private static SettlementDateEvent settlementDateEvent = new SettlementDateEvent();
     private static UnemploymentEvent unemploymentEvent = new UnemploymentEvent();
     private static DealOpportunityEvent dealOpportunityEvent = new DealOpportunityEvent();
+    private static ChildBirthEvent childBirthEvent = new ChildBirthEvent();
     private static Random random = new Random();
 
     static {
@@ -73,7 +74,7 @@ public class EventFactory {
             case UNEMPLOYMENT:
                 return unemploymentEvent;
             case CHILD:
-                // TODO 須實作
+                return childBirthEvent;
             default:
                 throw new UnsupportedOperationException();
         }
