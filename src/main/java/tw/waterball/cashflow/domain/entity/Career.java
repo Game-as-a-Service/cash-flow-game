@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.math.BigDecimal;
 
 public enum Career {
-    ENGINEER(1),
+    ENGINEER(250),
     TEACHER(1),
     POLICE(1),
     PILOT(1),
