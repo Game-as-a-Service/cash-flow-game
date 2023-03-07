@@ -6,4 +6,6 @@ import java.util.Optional;
 
 public interface CashFlowGameRepository {
     Optional<CashFlowGame> findById(String id);
+
+    CashFlowGame save(CashFlowGame cashFlowGame);
 }

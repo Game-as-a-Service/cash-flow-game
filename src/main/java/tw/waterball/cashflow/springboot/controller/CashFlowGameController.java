@@ -2,11 +2,15 @@ package tw.waterball.cashflow.springboot.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
+import lombok.val;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import tw.waterball.cashflow.application.repository.CashFlowGameRepository;
 import tw.waterball.cashflow.application.usecase.StartGameUseCase;
+import tw.waterball.cashflow.domain.CashFlowGame;
 
 import java.util.List;
 
@@ -14,6 +18,14 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/game")
 public class CashFlowGameController {
+
+    private final CashFlowGameRepository gameRepository;
+
+    @GetMapping("/actor")
+    public void getActor(@RequestBody GetActorRequest request){
+        System.out.println("request = " + request);
+//        CashFlowGame cashFlowGame = gameRepository.findById(request.getRoomId());
+    }
 
 
     @PostMapping("/start")
@@ -25,6 +37,12 @@ public class CashFlowGameController {
 //        return presenter.getViewModel()
 //                        .map(ResponseEntity::ok)
 //                        .orElseGet(noContent()::build);
+    }
+
+    @Value
+    public static class GetActorRequest{
+        String roomId;
+        String actor;
     }
 
     @Value
