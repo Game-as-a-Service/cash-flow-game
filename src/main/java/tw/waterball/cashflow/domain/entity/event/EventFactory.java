@@ -22,8 +22,6 @@ public class EventFactory {
     private static Map<BigOpportunityEventType, BigOpportunityEvent> bigOpportunityEventMap = new EnumMap<>(BigOpportunityEventType.class);
     private static Map<SmallRealEstateEventType, SmallRealEstateEvent> smallRealEstateEventMap = new EnumMap<>(SmallRealEstateEventType.class);
     private static Map<StockEventType, StockEvent> storckEventMap = new EnumMap<>(StockEventType.class);
-
-    private static List<Map> smallOpportunityList = Arrays.asList(smallRealEstateEventMap, storckEventMap);
     private static List<FinancialItemName> realEstateList = Arrays.asList(FinancialItemName.REAL_ESTATE_CONDO_2_BR_1_BA, FinancialItemName.REAL_ESTATE_HOUSE_3_BR_2_BA);
     private static CharityEvent charityEvent = new CharityEvent();
     private static SettlementDateEvent settlementDateEvent = new SettlementDateEvent();
@@ -105,10 +103,11 @@ public class EventFactory {
     }
 
     public static Event randomSmallOpportunity() {
-        Map smallOpportunityMap = smallOpportunityList.get(random.nextInt(smallOpportunityList.size()));
-        // TODO
-
-        return null;
+        if (random.nextInt(2) == 0) {
+            return smallRealEstateEventMap.get(SmallRealEstateEventType.values()[random.nextInt(smallRealEstateEventMap.size())]);
+        } else {
+            return storckEventMap.get(StockEventType.values()[random.nextInt(storckEventMap.size())]);
+        }
     }
 
     public static MarketEvent randomMarketEvent() {
